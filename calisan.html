@@ -12,7 +12,7 @@
 
 <body>
     <link rel="stylesheet" href="css/calisan.css">
-    
+
 
     <h2>Çalışan Listesi</h2> <!-- Sayfa başlığı -->
 
@@ -22,7 +22,8 @@
     <div id="guncelleModal" class="modal">
         <div class="modal-header">
             <h3>Çalışan Bilgilerini Güncelle</h3>
-            <span class="close-button" onclick="document.getElementById('guncelleModal').style.display='none'; document.getElementById('modalOverlay').style.display='none';">&times;</span>
+            <span class="close-button"
+                onclick="document.getElementById('guncelleModal').style.display='none'; document.getElementById('modalOverlay').style.display='none';">&times;</span>
         </div>
         <div class="modal-body">
             <form id="guncelleForm">
@@ -50,21 +51,23 @@
                 <div class="form-group">
                     <label for="guncelle_resim">Resim:</label>
                     <input type="file" id="guncelle_resim" accept="image/*">
-                    <img id="guncelle_resim_onizleme" src="" alt="Yok" style="max-width:80px; max-height:80px; display:none;" />
+                    <img id="guncelle_resim_onizleme" src="" alt="Yok"
+                        style="max-width:80px; max-height:80px; display:none;" />
                 </div>
                 <div class="form-actions">
                     <button type="submit" class="btn btn-primary">Kaydet</button>
-                    <button type="button" class="btn btn-secondary" onclick="document.getElementById('guncelleModal').style.display='none'; document.getElementById('modalOverlay').style.display='none';">Kapat</button>
+                    <button type="button" class="btn btn-secondary"
+                        onclick="document.getElementById('guncelleModal').style.display='none'; document.getElementById('modalOverlay').style.display='none';">Kapat</button>
                 </div>
             </form>
         </div>
     </div>
-   <div style="text-align: center; margin-top: 20px;">
-    <button onclick="window.location.href='anasayfa.html'"
-        style="  padding:10px 20px;  font-size:16px; border-radius:6px; background:#1976d2; color:#fff; border:none; cursor:pointer"> 
-        Ana Sayfaya Dön
-    </button>
-</div>
+    <div style="text-align: center; margin-top: 20px;">
+        <button onclick="window.location.href='anasayfa.html'"
+            style="  padding:10px 20px;  font-size:16px; border-radius:6px; background:#1976d2; color:#fff; border:none; cursor:pointer">
+            Ana Sayfaya Dön
+        </button>
+    </div>
 
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery kütüphanesi -->

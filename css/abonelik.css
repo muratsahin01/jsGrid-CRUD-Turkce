@@ -1,25 +1,26 @@
 body {
-            font-family: Arial, sans-serif;
-            /* Yazı tipi */
-            margin: 40px;
-            
-        }
+    font-family: Arial, sans-serif;
+    /* Yazı tipi */
+    margin: 40px;
 
-        h2 {
-            margin:0px;
-            padding:0px;
-            margin-bottom: 20px;
-            /* Başlık altı boşluk */
-            text-align: center;
-        }
+}
 
-        button {
+h2 {
+    margin: 0px;
+    padding: 0px;
+    margin-bottom: 20px;
+    /* Başlık altı boşluk */
+    text-align: center;
+}
 
-            margin: 15px;
-            
-            /* Sağ boşluk */
-        }   
-        .jsgrid-pager {
+button {
+
+    margin: 15px;
+
+    /* Sağ boşluk */
+}
+
+.jsgrid-pager {
     margin: 20px 0 0 0;
     text-align: center;
     font-size: 15px;
@@ -38,7 +39,8 @@ body {
 
 .jsgrid-pager a:hover {
     background: #1976d2;
-    color: #000; /* Hover durumunda yazı rengini siyah yap */
+    color: #000;
+    /* Hover durumunda yazı rengini siyah yap */
     border: 1px solid #1976d2;
 }
 
@@ -55,75 +57,80 @@ body {
 .jsgrid-pager span {
     margin: 0 6px;
 }
-  
 
-        .jsgrid-grid-header {
-    background-color: #1976d2; /* Başlık arka plan rengi */
-    color: white; /* Başlık yazı rengi */
-    font-size: 16px; /* Başlık yazı boyutu */
+
+.jsgrid-grid-header {
+    background-color: #1976d2;
+    /* Başlık arka plan rengi */
+    color: white;
+    /* Başlık yazı rengi */
+    font-size: 16px;
+    /* Başlık yazı boyutu */
 }
 
 .jsgrid-header-cell {
-    color: black; /* Başlık hücrelerindeki yazı rengini siyah yap */
+    color: black;
+    /* Başlık hücrelerindeki yazı rengini siyah yap */
 }
 
-        .jsgrid-header-row>.jsgrid-header-cell {
-            padding: 10px;
-            /* Başlık hücre içi boşluk */
-        }
+.jsgrid-header-row>.jsgrid-header-cell {
+    padding: 10px;
+    /* Başlık hücre içi boşluk */
+}
 
-        .jsgrid-row>.jsgrid-cell,
-        .jsgrid-alt-row>.jsgrid-cell {
-            padding: 10px;
-            /* Satır hücre içi boşluk */
-        }
+.jsgrid-row>.jsgrid-cell,
+.jsgrid-alt-row>.jsgrid-cell {
+    padding: 10px;
+    /* Satır hücre içi boşluk */
+}
 
-        .jsgrid-row {
-            background-color: #f9f9f9;
-            /* Normal satır arka plan rengi */
-        }
+.jsgrid-row {
+    background-color: #f9f9f9;
+    /* Normal satır arka plan rengi */
+}
 
-        .jsgrid-alt-row {
-            background-color: #eeeeee;
-            /* Alternatif satır arka plan rengi */
-        }
+.jsgrid-alt-row {
+    background-color: #eeeeee;
+    /* Alternatif satır arka plan rengi */
+}
 
-        .jsgrid-selected-row>.jsgrid-cell {
-            background-color: #c3d4e5;
-            /* Seçili satır arka plan rengi */
-        }
+.jsgrid-selected-row>.jsgrid-cell {
+    background-color: #c3d4e5;
+    /* Seçili satır arka plan rengi */
+}
 
-        .jsgrid-filter-row input,
-        .jsgrid-filter-row select {
-            width: 90%;
-            /* Filtre kutusu genişliği */
-            padding: 5px;
-            /* Filtre kutusu içi boşluk */
-        }
+.jsgrid-filter-row input,
+.jsgrid-filter-row select {
+    width: 90%;
+    /* Filtre kutusu genişliği */
+    padding: 5px;
+    /* Filtre kutusu içi boşluk */
+}
 
-        .jsgrid-insert-row input,
-        .jsgrid-insert-row select {
-            width: 90%;
-            /* Ekleme kutusu genişliği */
-            padding: 5px;
-            /* Ekleme kutusu içi boşluk */
-        }
+.jsgrid-insert-row input,
+.jsgrid-insert-row select {
+    width: 90%;
+    /* Ekleme kutusu genişliği */
+    padding: 5px;
+    /* Ekleme kutusu içi boşluk */
+}
 
-        .jsgrid-edit-row input,
-        .jsgrid-edit-row select {
-            width: 90%;
-            /* Düzenleme kutusu genişliği */
-            padding: 5px;
-            /* Düzenleme kutusu içi boşluk */
-        }
+.jsgrid-edit-row input,
+.jsgrid-edit-row select {
+    width: 90%;
+    /* Düzenleme kutusu genişliği */
+    padding: 5px;
+    /* Düzenleme kutusu içi boşluk */
+}
 
-        .jsgrid-button {
-            margin: 0 5px;
-            /* Butonlar arası boşluk */
-            cursor: pointer;
-            /* Buton imleci */
-        }
-        .jsgrid-header-sort-asc:after {
+.jsgrid-button {
+    margin: 0 5px;
+    /* Butonlar arası boşluk */
+    cursor: pointer;
+    /* Buton imleci */
+}
+
+.jsgrid-header-sort-asc:after {
     content: " ▲";
     font-size: 12px;
 }
@@ -132,11 +139,15 @@ body {
     content: " ▼";
     font-size: 12px;
 }
+
 .jsgrid-header-sortable:hover {
-    background-color: #1565c0; /* Hover rengi */
+    background-color: #1565c0;
+    /* Hover rengi */
 }
+
 .jsgrid-control-field button {
-    background-color: #1976d2; /* Mavi renk */
+    background-color: #1976d2;
+    /* Mavi renk */
     color: white;
     border: none;
     padding: 8px 12px;
@@ -146,17 +157,22 @@ body {
 }
 
 .jsgrid-control-field button:hover {
-    background-color: #1565c0; /* Koyu mavi */
+    background-color: #1565c0;
+    /* Koyu mavi */
 }
+
 .jsgrid-nodata-row .jsgrid-cell {
     text-align: center;
     padding: 20px;
     font-size: 18px;
     color: #757575;
 }
+
 .jsgrid-grid-body {
-    min-height: 200px; /* Minimum yükseklik */
+    min-height: 200px;
+    /* Minimum yükseklik */
 }
+
 .jsgrid-load-panel {
     position: absolute;
     top: 50%;
@@ -165,7 +181,7 @@ body {
     background: rgba(255, 255, 255, 0.8);
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 1000;
 }
 
@@ -175,9 +191,10 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.1);
+    background: rgba(0, 0, 0, 0.1);
     z-index: 999;
 }
+
 .jsgrid-load-indicator {
     width: 60px;
     height: 60px;
@@ -188,10 +205,17 @@ body {
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
-.jsgrid-pager-page a, .jsgrid-pager-nav-button a {
+
+.jsgrid-pager-page a,
+.jsgrid-pager-nav-button a {
     padding: 5px 10px;
     border-radius: 4px;
 }
@@ -203,38 +227,58 @@ body {
     padding: 5px 10px;
 }
 
-.jsgrid-pager-page a:hover, .jsgrid-pager-nav-button a:hover {
+.jsgrid-pager-page a:hover,
+.jsgrid-pager-nav-button a:hover {
     background-color: #e3f2fd;
 }
+
 .jsgrid-header-cell {
     font-weight: bold;
 }
+
 .jsgrid-cell {
     border: 1px solid #ddd;
 }
+
 .jsgrid-grid-header {
     border-bottom: 2px solid #1976d2;
 }
+
 .jsgrid-table {
     border-collapse: collapse;
 }
-.jsgrid-filter-row .jsgrid-cell, .jsgrid-insert-row .jsgrid-cell, .jsgrid-edit-row .jsgrid-cell {
+
+.jsgrid-filter-row .jsgrid-cell,
+.jsgrid-insert-row .jsgrid-cell,
+.jsgrid-edit-row .jsgrid-cell {
     border-color: #1976d2;
 }
-.jsgrid-filter-row input, .jsgrid-insert-row input, .jsgrid-edit-row input {
+
+.jsgrid-filter-row input,
+.jsgrid-insert-row input,
+.jsgrid-edit-row input {
     border: 1px solid #ccc;
     border-radius: 4px;
     padding: 6px;
 }
-.jsgrid-filter-row input:focus, .jsgrid-insert-row input:focus, .jsgrid-edit-row input:focus {
+
+.jsgrid-filter-row input:focus,
+.jsgrid-insert-row input:focus,
+.jsgrid-edit-row input:focus {
     border-color: #1976d2;
     box-shadow: 0 0 5px rgba(25, 118, 210, 0.5);
     outline: none;
 }
-.jsgrid-insert-button, .jsgrid-edit-button, .jsgrid-delete-button, .jsgrid-update-button, .jsgrid-cancel-edit-button {
+
+.jsgrid-insert-button,
+.jsgrid-edit-button,
+.jsgrid-delete-button,
+.jsgrid-update-button,
+.jsgrid-cancel-edit-button {
     font-size: 1.5em;
     padding: 0.2em;
 }
+
 .jsgrid-search-button {
     background-color: #1976d2;
     color: white;
@@ -244,9 +288,11 @@ body {
     cursor: pointer;
     transition: background-color 0.3s;
 }
+
 .jsgrid-search-button:hover {
     background-color: #1565c0;
 }
+
 .jsgrid-clear-filter-button {
     background-color: #757575;
     color: white;
@@ -256,69 +302,100 @@ body {
     cursor: pointer;
     transition: background-color 0.3s;
 }
+
 .jsgrid-clear-filter-button:hover {
     background-color: #616161;
 }
+
 .jsgrid-error-row .jsgrid-cell {
     background-color: #ffebee;
     color: #c62828;
     padding: 10px;
     border: 1px solid #c62828;
 }
+
 .jsgrid-invalid .jsgrid-cell {
     background-color: #ffebee;
 }
+
 .jsgrid-invalid input {
     border-color: #c62828 !important;
 }
+
 .jsgrid-validation-message {
     color: #c62828;
     font-size: 0.9em;
     margin-top: 4px;
 }
-.jsgrid-grid-header, .jsgrid-grid-body, .jsgrid-pager-container {
+
+.jsgrid-grid-header,
+.jsgrid-grid-body,
+.jsgrid-pager-container {
     border: 1px solid #ddd;
 }
+
 .jsgrid-grid-header {
     border-bottom: none;
 }
+
 .jsgrid-table {
     border: none;
 }
-.jsgrid-header-row > .jsgrid-header-cell:first-child, .jsgrid-filter-row > .jsgrid-cell:first-child, .jsgrid-insert-row > .jsgrid-cell:first-child, .jsgrid-row > .jsgrid-cell:first-child, .jsgrid-alt-row > .jsgrid-cell:first-child {
+
+.jsgrid-header-row>.jsgrid-header-cell:first-child,
+.jsgrid-filter-row>.jsgrid-cell:first-child,
+.jsgrid-insert-row>.jsgrid-cell:first-child,
+.jsgrid-row>.jsgrid-cell:first-child,
+.jsgrid-alt-row>.jsgrid-cell:first-child {
     border-left: none;
 }
-.jsgrid-header-row > .jsgrid-header-cell:last-child, .jsgrid-filter-row > .jsgrid-cell:last-child, .jsg
+
+.jsgrid-header-row>.jsgrid-header-cell:last-child,
+.jsgrid-filter-row>.jsgrid-cell:last-child,
+.jsg
 
 /* Modal (Kart) Stilleri */
 .modal-overlay {
-    display: none; /* Başlangıçta gizli */
-    position: fixed; /* Ekranı kaplar */
-    top: 0; 
+    display: none;
+    /* Başlangıçta gizli */
+    position: fixed;
+    /* Ekranı kaplar */
+    top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6); /* Yarı saydam siyah */
-    z-index: 999; /* Kartın altında kalır */
+    background-color: rgba(0, 0, 0, 0.6);
+    /* Yarı saydam siyah */
+    z-index: 999;
+    /* Kartın altında kalır */
 }
 
 .modal {
-    display: none; /* Başlangıçta gizli */
-    position: fixed; /* Ekranın ortasında kalır */
+    display: none;
+    /* Başlangıçta gizli */
+    position: fixed;
+    /* Ekranın ortasında kalır */
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Tam ortalama */
+    transform: translate(-50%, -50%);
+    /* Tam ortalama */
     background-color: #fff;
     border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Hafif gölge */
-    z-index: 1000; /* En üstte görünür */
-    width: 90%; /* Genişlik */
-    max-width: 500px; /* Maksimum genişlik */
-    overflow: hidden; /* İçerik taşmasını engeller */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    /* Hafif gölge */
+    z-index: 1000;
+    /* En üstte görünür */
+    width: 90%;
+    /* Genişlik */
+    max-width: 500px;
+    /* Maksimum genişlik */
+    overflow: hidden;
+    /* İçerik taşmasını engeller */
 }
 
 .modal-header {
-    background-color: #1976d2; /* Başlık arka planı */
+    background-color: #1976d2;
+    /* Başlık arka planı */
     color: white;
     padding: 15px 20px;
     display: flex;
@@ -362,7 +439,8 @@ body {
 .form-group input[type="text"],
 .form-group input[type="number"],
 .form-group input[type="email"] {
-    width: calc(100% - 22px); /* Padding ve border için ayarlama */
+    width: calc(100% - 22px);
+    /* Padding ve border için ayarlama */
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -391,7 +469,8 @@ body {
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s ease;
-    margin-left: 10px; /* Butonlar arası boşluk */
+    margin-left: 10px;
+    /* Butonlar arası boşluk */
 }
 
 .btn-primary {

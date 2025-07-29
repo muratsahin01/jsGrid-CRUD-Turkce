@@ -1,7 +1,7 @@
-$(function() { // Sayfa yüklendiğinde çalışır
+$(function () { // Sayfa yüklendiğinde çalışır
   $("#jsGrid").jsGrid({ // jsGrid tabloyu başlatır
     width: "100%", // Tablo genişliği
-   // height: "700px", // Tablo yüksekliği
+    // height: "700px", // Tablo yüksekliği
     inserting: true, // Yeni kayıt ekleme aktif
     editing: false, // inline edit kapalı, modal ile olacak
     sorting: true, // Sıralama aktif
@@ -11,7 +11,7 @@ $(function() { // Sayfa yüklendiğinde çalışır
     pageSize: 7, // Sayfa başına kayıt
     pageButtonCount: 5, // Sayfa buton sayısı
     controller: {
-      loadData: function(filter) { // Verileri yükler
+      loadData: function (filter) { // Verileri yükler
         return $.ajax({
           type: "GET", // GET isteği
           url: "http://localhost:3000/api/employees", // API adresi
@@ -19,14 +19,14 @@ $(function() { // Sayfa yüklendiğinde çalışır
           dataType: "json" // JSON veri tipi
         });
       },
-      insertItem: function(item) { // Yeni kayıt ekler
+      insertItem: function (item) { // Yeni kayıt ekler
         const formData = new FormData(); // FormData nesnesi oluştur
         ["Isim", "Pozisyon", "Ofis", "Yas", "Maas"].forEach(key => {
-          if(item[key] !== undefined) formData.append(key, item[key]); // Text alanları ekle
+          if (item[key] !== undefined) formData.append(key, item[key]); // Text alanları ekle
         });
-        if(item.Resim instanceof File) formData.append('resim', item.Resim); // Dosya ekle
+        if (item.Resim instanceof File) formData.append('resim', item.Resim); // Dosya ekle
         for (var pair of formData.entries()) {
-          console.log(pair[0]+ ': ' + pair[1]); // Debug için
+          console.log(pair[0] + ': ' + pair[1]); // Debug için
         }
         return $.ajax({
           type: "POST", // POST isteği
@@ -34,19 +34,19 @@ $(function() { // Sayfa yüklendiğinde çalışır
           data: formData, // Form verisi
           processData: false, // FormData için
           contentType: false, // FormData için
-        }).then(function(response) {
+        }).then(function (response) {
           $("#jsGrid").jsGrid("loadData"); // Tabloyu yenile
           return response;
         });
       },
-      updateItem: function(item) { // Kayıt günceller
+      updateItem: function (item) { // Kayıt günceller
         const formData = new FormData(); // FormData nesnesi oluştur
         ["Isim", "Pozisyon", "Ofis", "Yas", "Maas"].forEach(key => {
-          if(item[key] !== undefined) formData.append(key, item[key]); // Text alanları ekle
+          if (item[key] !== undefined) formData.append(key, item[key]); // Text alanları ekle
         });
-        if(item.Resim instanceof File) formData.append('resim', item.Resim); // Dosya ekle
+        if (item.Resim instanceof File) formData.append('resim', item.Resim); // Dosya ekle
         for (var pair of formData.entries()) {
-          console.log(pair[0]+ ': ' + pair[1]); // Debug için
+          console.log(pair[0] + ': ' + pair[1]); // Debug için
         }
         return $.ajax({
           type: "PUT", // PUT isteği
@@ -54,12 +54,12 @@ $(function() { // Sayfa yüklendiğinde çalışır
           data: formData,
           processData: false,
           contentType: false,
-        }).then(function(response) {
+        }).then(function (response) {
           $("#jsGrid").jsGrid("loadData"); // Tabloyu yenile
           return response;
         });
       },
-      deleteItem: function(item) { // Kayıt siler
+      deleteItem: function (item) { // Kayıt siler
         return $.ajax({
           type: "DELETE", // DELETE isteği
           url: "http://localhost:3000/api/employees/" + item.EmployeeId // API adresi
@@ -73,8 +73,9 @@ $(function() { // Sayfa yüklendiğinde çalışır
       { name: "Ofis", type: "text", width: 80 }, // Ofis alanı
       { name: "Yas", type: "number", width: 40 }, // Yaş alanı
       { name: "Maas", type: "number", width: 60 }, // Maaş alanı
-      { name: "Resim", title: "Resim", width: 80, align: "center", sorting: false, filtering: false,
-        itemTemplate: function(value, item) { // Resim gösterimi
+      {
+        name: "Resim", title: "Resim", width: 80, align: "center", sorting: false, filtering: false,
+        itemTemplate: function (value, item) { // Resim gösterimi
           console.log('jsGrid item:', item); // jsGrid satırını logla
           var dosya = item.Resim || item.resim; // Resim dosya adını al
           console.log('Resim alanı:', dosya); // Resim alanını logla
@@ -84,26 +85,27 @@ $(function() { // Sayfa yüklendiğinde çalışır
             return 'Yok'; // Resim yoksa
           }
         },
-        insertTemplate: function() { // Ekleme sırasında dosya inputu oluşturur
+        insertTemplate: function () { // Ekleme sırasında dosya inputu oluşturur
           this._insertResimFile = $("<input type='file' accept='image/*'>"); // Dosya seçme inputu
           return this._insertResimFile;
         },
-        editTemplate: function() { //Düzenleme sırasında dosya inputu oluşturur
+        editTemplate: function () { //Düzenleme sırasında dosya inputu oluşturur
           this._editResimFile = $("<input type='file' accept='image/*'>"); // Dosya seçme inputu (düzenle)
           return this._editResimFile;
         },
-        insertValue: function() { // Eklemede seçilen dosyayı döndürür
+        insertValue: function () { // Eklemede seçilen dosyayı döndürür
           return this._insertResimFile[0].files[0] || null; // Seçilen dosya
         },
-        editValue: function() { // Düzenlemede seçilen dosyayı döndürür
+        editValue: function () { // Düzenlemede seçilen dosyayı döndürür
           return this._editResimFile[0].files[0] || null; // Seçilen dosya (düzenle)
         }
       },
-      { type: "control",
+      {
+        type: "control",
         editButton: false, // Inline edit butonu kapalı
-        itemTemplate: function(value, item) { // Kontrol butonları
+        itemTemplate: function (value, item) { // Kontrol butonları
           var $result = jsGrid.fields.control.prototype.itemTemplate.apply(this, arguments); // Varsayılan kontrol butonlarını ekle
-          var $customButton = $("<button>").text("Güncelle").on("click", function(e) { // Güncelle butonu oluştur
+          var $customButton = $("<button>").text("Güncelle").on("click", function (e) { // Güncelle butonu oluştur
             e.stopPropagation(); // Olayın yayılmasını engelle
             openUpdateModal(item); // Modal aç
           });
@@ -122,22 +124,22 @@ function openUpdateModal(item) { // Güncelleme modalını açar
   $("#guncelle_ofis").val(item.Ofis); // Ofis ata
   $("#guncelle_yas").val(item.Yas); // Yaş ata
   $("#guncelle_maas").val(item.Maas); // Maaş ata
-  if(item.Resim && typeof item.Resim === 'string' && item.Resim !== 'null' && item.Resim !== 'undefined') {
+  if (item.Resim && typeof item.Resim === 'string' && item.Resim !== 'null' && item.Resim !== 'undefined') {
     $("#guncelle_resim_onizleme").attr('src', '/uploads/' + item.Resim).show(); // Resim göster
   } else {
     $("#guncelle_resim_onizleme").attr('src', '').hide(); // Resim gizle
   }
-  $("#guncelle_resim").off('change').on('change', function() { // Dosya inputu değişince çalışır
-    if(this.files && this.files[0]) {
+  $("#guncelle_resim").off('change').on('change', function () { // Dosya inputu değişince çalışır
+    if (this.files && this.files[0]) {
       var reader = new FileReader(); // Dosya okuyucu oluştur
-      reader.onload = function(e) { // Dosya yüklendiğinde çalışır
+      reader.onload = function (e) { // Dosya yüklendiğinde çalışır
         $("#guncelle_resim_onizleme").attr('src', e.target.result).show(); // Yeni resmi göster
       };
       reader.readAsDataURL(this.files[0]); // Dosyayı base64 olarak oku
     }
   });
   $("#guncelleModal").show(); // Modalı göster
-  $("#guncelleForm")[0].onsubmit = function(e) { // Form submit olunca çalışır
+  $("#guncelleForm")[0].onsubmit = function (e) { // Form submit olunca çalışır
     e.preventDefault(); // Formun default submitini engelle
     var formData = new FormData(); // FormData nesnesi oluştur
     formData.append('Isim', $("#guncelle_alan1").val()); // İsim ekle
@@ -146,9 +148,9 @@ function openUpdateModal(item) { // Güncelleme modalını açar
     formData.append('Yas', $("#guncelle_yas").val()); // Yaş ekle
     formData.append('Maas', $("#guncelle_maas").val()); // Maaş ekle
     var fileInput = document.getElementById('guncelle_resim'); // Dosya inputunu al
-    if(fileInput.files[0]) formData.append('resim', fileInput.files[0]); // Dosya ekle
+    if (fileInput.files[0]) formData.append('resim', fileInput.files[0]); // Dosya ekle
     for (var pair of formData.entries()) {
-      console.log(pair[0]+ ': ' + pair[1]); // Debug
+      console.log(pair[0] + ': ' + pair[1]); // Debug
     }
     $.ajax({ // Ajax ile güncelleme isteği gönder
       type: "PUT", // PUT isteği
@@ -156,11 +158,11 @@ function openUpdateModal(item) { // Güncelleme modalını açar
       data: formData,
       processData: false,
       contentType: false,
-      success: function() {
+      success: function () {
         $("#guncelleModal").hide(); // Modalı kapat
         $("#jsGrid").jsGrid("loadData"); // Tabloyu yenile
       },
-      error: function() { alert('Güncelleme hatası!'); }
+      error: function () { alert('Güncelleme hatası!'); }
     });
   };
 }

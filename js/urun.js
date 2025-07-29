@@ -1,4 +1,4 @@
-$(function() {
+$(function () {
   $("#jsGrid").jsGrid({
     width: "100%",
     inserting: true,
@@ -10,14 +10,14 @@ $(function() {
     pageSize: 7,
     pageButtonCount: 5,
     controller: {
-      loadData: function(filter) {
+      loadData: function (filter) {
         return $.ajax({
           type: "GET",
           url: "/api/urunler",
           data: filter
         });
       },
-      insertItem: function(item) {
+      insertItem: function (item) {
         return $.ajax({
           type: "POST",
           url: "/api/urunler",
@@ -25,7 +25,7 @@ $(function() {
           contentType: "application/x-www-form-urlencoded"
         });
       },
-      deleteItem: function(item) {
+      deleteItem: function (item) {
         return $.ajax({
           type: "DELETE",
           url: "/api/urunler",
@@ -41,12 +41,12 @@ $(function() {
       { name: "fiyat", type: "number", title: "Fiyat", width: 60 },
       { name: "stok", type: "number", title: "Stok Miktarı", width: 60 },
       { name: "aciklama", type: "text", title: "Açıklama", width: 150 },
-      { 
+      {
         type: "control",
         editButton: false, // Satır içi düzenleme butonu kapalı
-        itemTemplate: function(value, item) {
+        itemTemplate: function (value, item) {
           var $result = jsGrid.fields.control.prototype.itemTemplate.apply(this, arguments);
-          var $customButton = $("<button>").text("Güncelle").on("click", function(e) {
+          var $customButton = $("<button>").text("Güncelle").on("click", function (e) {
             e.stopPropagation();
             openUpdateModal(item);
           });
@@ -64,10 +64,10 @@ function openUpdateModal(item) {
   $("#guncelle_fiyat").val(item.fiyat);
   $("#guncelle_stok").val(item.stok);
   $("#guncelle_aciklama").val(item.aciklama);
-  
+
   $("#guncelleModal").show();
-  
-  $("#guncelleForm").off("submit").on("submit", function(e) {
+
+  $("#guncelleForm").off("submit").on("submit", function (e) {
     e.preventDefault();
     var updatedItem = {
       id: $("#guncelle_id").val(),
@@ -80,14 +80,14 @@ function openUpdateModal(item) {
 
     $.ajax({
       type: "PUT",
-      url: "/api/urunler", 
+      url: "/api/urunler",
       data: updatedItem,
       contentType: "application/x-www-form-urlencoded",
-      success: function() {
+      success: function () {
         $("#guncelleModal").hide();
         $("#jsGrid").jsGrid("loadData");
       },
-      error: function() {
+      error: function () {
         alert('Güncelleme sırasında bir hata oluştu!');
       }
     });

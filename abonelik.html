@@ -12,17 +12,18 @@
 
 <body>
     <link rel="stylesheet" href="css/abonelik.css">
-    
+
     <h2>Abonelik Listesi</h2>
 
     <div id="jsGrid"></div> <!-- jsGrid tablosunun geleceği alan -->
-  
+
     <!-- Modal (kart) -->
     <div id="modalOverlay" class="modal-overlay"></div>
     <div id="guncelleModal" class="modal">
         <div class="modal-header">
             <h3>Abonelik Bilgilerini Güncelle</h3>
-            <span class="close-button" onclick="document.getElementById('guncelleModal').style.display='none'; document.getElementById('modalOverlay').style.display='none';">&times;</span>
+            <span class="close-button"
+                onclick="document.getElementById('guncelleModal').style.display='none'; document.getElementById('modalOverlay').style.display='none';">&times;</span>
         </div>
         <div class="modal-body">
             <form id="guncelleForm">
@@ -49,18 +50,19 @@
                 </div>
                 <div class="form-actions">
                     <button type="submit" class="btn btn-primary">Kaydet</button>
-                    <button type="button" class="btn btn-secondary" onclick="document.getElementById('guncelleModal').style.display='none'; document.getElementById('modalOverlay').style.display='none';">Kapat</button>
+                    <button type="button" class="btn btn-secondary"
+                        onclick="document.getElementById('guncelleModal').style.display='none'; document.getElementById('modalOverlay').style.display='none';">Kapat</button>
                 </div>
             </form>
         </div>
     </div>
 
-<div style="text-align: center; margin-top: 20px;">
-    <button onclick="window.location.href='anasayfa.html'"
-        style="  padding:10px 20px;  font-size:16px; border-radius:6px; background:#1976d2; color:#fff; border:none; cursor:pointer"> 
-        Ana Sayfaya Dön
-    </button>
-</div>
+    <div style="text-align: center; margin-top: 20px;">
+        <button onclick="window.location.href='anasayfa.html'"
+            style="  padding:10px 20px;  font-size:16px; border-radius:6px; background:#1976d2; color:#fff; border:none; cursor:pointer">
+            Ana Sayfaya Dön
+        </button>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery kütüphanesi -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jsgrid@1.5.3/dist/jsgrid.min.js"></script>
