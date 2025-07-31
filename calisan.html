@@ -20,6 +20,7 @@
 
     <div style="text-align: center; margin-top: 20px;">
         <button id="yeniCalisanBtn" class="btn btn-primary">Yeni Çalışan Ekle</button>
+        <button id="topluSilBtn" class="btn btn-danger" disabled>Seçilenleri Sil</button>
         <button onclick="window.location.href='index.html'" class="btn btn-secondary">Ana Sayfaya Dön</button>
     </div>
 
@@ -27,7 +28,8 @@
     <div id="ekleModal" class="modal">
         <div class="modal-header">
             <h3>Yeni Çalışan Ekle</h3>
-            <span class="close-button" onclick="document.getElementById('ekleModal').style.display='none'; document.getElementById('modalOverlay').style.display='none';">&times;</span>
+            <span class="close-button"
+                onclick="document.getElementById('ekleModal').style.display='none'; document.getElementById('modalOverlay').style.display='none';">&times;</span>
         </div>
         <div class="modal-body">
             <form id="ekleForm">
@@ -54,11 +56,13 @@
                 <div class="form-group">
                     <label for="ekle_resim">Resim:</label>
                     <input type="file" id="ekle_resim" accept="image/*">
-                    <img id="ekle_resim_onizleme" src="" alt="Önizleme" style="max-width:80px; max-height:80px; display:none; margin-top: 10px;" />
+                    <img id="ekle_resim_onizleme" src="" alt="Önizleme"
+                        style="max-width:80px; max-height:80px; display:none; margin-top: 10px;" />
                 </div>
                 <div class="form-actions">
                     <button type="submit" class="btn btn-primary">Ekle</button>
-                    <button type="button" class="btn btn-secondary" onclick="document.getElementById('ekleModal').style.display='none'; document.getElementById('modalOverlay').style.display='none';">Kapat</button>
+                    <button type="button" class="btn btn-secondary"
+                        onclick="document.getElementById('ekleModal').style.display='none'; document.getElementById('modalOverlay').style.display='none';">Kapat</button>
                 </div>
             </form>
         </div>
@@ -108,7 +112,7 @@
             </form>
         </div>
     </div>
-    
+
 
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery kütüphanesi -->

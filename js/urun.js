@@ -1,4 +1,12 @@
+let seciliUrunler = new Set();
+
 $(function () {
+  const $topluSilBtn = $("#topluSilBtn");
+
+  function guncelleTopluSilButonu() {
+    $topluSilBtn.prop('disabled', seciliUrunler.size === 0);
+  }
+
   $("#jsGrid").jsGrid({
     width: "100%",
     inserting: false, // Modal ile eklenecek
@@ -35,6 +43,29 @@ $(function () {
       }
     },
     fields: [
+      {
+        headerTemplate: function () {
+          return $("<input>").attr("type", "checkbox").on("change", function () {
+            $(".single-checkbox").prop("checked", $(this).is(":checked")).trigger("change");
+          });
+        },
+        itemTemplate: function (_, item) {
+          return $("<input>").attr("type", "checkbox").addClass("single-checkbox")
+            .prop("checked", seciliUrunler.has(item.id))
+            .on("change", function () {
+              if ($(this).is(":checked")) {
+                seciliUrunler.add(item.id);
+              } else {
+                seciliUrunler.delete(item.id);
+              }
+              guncelleTopluSilButonu();
+            });
+        },
+        align: "center",
+        width: 50,
+        sorting: false,
+        filtering: false
+      },
       { name: "id", type: "number", visible: false },
       { name: "urunAdi", type: "text", title: "Ürün Adı", width: 100, validate: "required" },
       { name: "kategori", type: "text", title: "Kategori", width: 80 },
@@ -56,21 +87,45 @@ $(function () {
     ]
   });
 
+  $topluSilBtn.on("click", function () {
+    if (seciliUrunler.size === 0) return;
+
+    if (confirm(`${seciliUrunler.size} adet ürünü silmek istediğinizden emin misiniz?`)) {
+      const idsToDelete = Array.from(seciliUrunler);
+
+      $.ajax({
+        type: "DELETE",
+        url: "http://localhost:3000/api/urunler",
+        contentType: "application/json",
+        data: JSON.stringify({ ids: idsToDelete }),
+        success: function (response) {
+          alert(response.message || "Seçilen ürünler başarıyla silindi.");
+          seciliUrunler.clear();
+          guncelleTopluSilButonu();
+          $("#jsGrid").jsGrid("loadData");
+        },
+        error: function () {
+          alert("Hata: Ürünler silinemedi.");
+        }
+      });
+    }
+  });
+
   // Yeni Ürün Ekle Butonu
-  $("#yeniUrunBtn").on("click", function() {
+  $("#yeniUrunBtn").on("click", function () {
     $("#ekleModal").show();
     $("#modalOverlay").show();
   });
 
   // Ekleme Formu
-  $("#ekleForm").on("submit", function(e) {
+  $("#ekleForm").on("submit", function (e) {
     e.preventDefault();
     var newItem = {
-        urunAdi: $("#ekle_urunAdi").val(),
-        kategori: $("#ekle_kategori").val(),
-        fiyat: $("#ekle_fiyat").val(),
-        stok: $("#ekle_stok").val(),
-        aciklama: $("#ekle_aciklama").val()
+      urunAdi: $("#ekle_urunAdi").val(),
+      kategori: $("#ekle_kategori").val(),
+      fiyat: $("#ekle_fiyat").val(),
+      stok: $("#ekle_stok").val(),
+      aciklama: $("#ekle_aciklama").val()
     };
 
     $.ajax({

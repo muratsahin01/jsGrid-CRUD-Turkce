@@ -1,4 +1,12 @@
+let seciliCalisanlar = new Set();
+
 $(function () { // Sayfa yüklendiğinde çalışır
+  const $topluSilBtn = $("#topluSilBtn");
+
+  function guncelleTopluSilButonu() {
+    $topluSilBtn.prop('disabled', seciliCalisanlar.size === 0);
+  }
+
   $("#jsGrid").jsGrid({ // jsGrid tabloyu başlatır
     width: "100%", // Tablo genişliği
     // height: "700px", // Tablo yüksekliği
@@ -67,6 +75,31 @@ $(function () { // Sayfa yüklendiğinde çalışır
       }
     },
     fields: [
+      {
+        headerTemplate: function () {
+          return $("<input>").attr("type", "checkbox").on("change", function () {
+            const isChecked = $(this).is(":checked");
+            $(".single-checkbox").prop("checked", isChecked).trigger("change");
+          });
+        },
+        itemTemplate: function (_, item) {
+          return $("<input>").attr("type", "checkbox").addClass("single-checkbox")
+            .prop("checked", seciliCalisanlar.has(item.EmployeeId))
+            .on("change", function () {
+              const isChecked = $(this).is(":checked");
+              if (isChecked) {
+                seciliCalisanlar.add(item.EmployeeId);
+              } else {
+                seciliCalisanlar.delete(item.EmployeeId);
+              }
+              guncelleTopluSilButonu();
+            });
+        },
+        align: "center",
+        width: 50,
+        sorting: false,
+        filtering: false
+      },
       { name: "EmployeeId", type: "number", width: 25, editing: false, visible: false }, // ID alanı (gizli)
       { name: "Isim", type: "text", width: 100, validate: "required" }, // İsim alanı
       { name: "Pozisyon", type: "text", width: 100 }, // Pozisyon alanı
@@ -115,8 +148,32 @@ $(function () { // Sayfa yüklendiğinde çalışır
     ]
   });
 
+  $topluSilBtn.on("click", function () {
+    if (seciliCalisanlar.size === 0) return;
+
+    if (confirm(`${seciliCalisanlar.size} adet kaydı silmek istediğinizden emin misiniz?`)) {
+      const idsToDelete = Array.from(seciliCalisanlar);
+
+      $.ajax({
+        type: "DELETE",
+        url: "http://localhost:3000/api/employees", // DİKKAT: Yeni endpoint
+        contentType: "application/json",
+        data: JSON.stringify({ ids: idsToDelete }), // ID'leri JSON olarak gönder
+        success: function (response) {
+          alert(response.message || "Seçilen kayıtlar başarıyla silindi.");
+          seciliCalisanlar.clear();
+          guncelleTopluSilButonu();
+          $("#jsGrid").jsGrid("loadData"); // Tabloyu yenile
+        },
+        error: function () {
+          alert("Hata: Kayıtlar silinemedi.");
+        }
+      });
+    }
+  });
+
   // Yeni Çalışan Ekle Butonu
-  $("#yeniCalisanBtn").on("click", function() {
+  $("#yeniCalisanBtn").on("click", function () {
     $("#ekleModal").show();
     $("#modalOverlay").show();
   });
@@ -133,7 +190,7 @@ $(function () { // Sayfa yüklendiğinde çalışır
   });
 
   // Ekleme Formu
-  $("#ekleForm").on("submit", function(e) {
+  $("#ekleForm").on("submit", function (e) {
     e.preventDefault();
     var formData = new FormData();
     formData.append('Isim', $("#ekle_isim").val());

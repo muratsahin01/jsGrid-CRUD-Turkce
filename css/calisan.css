@@ -1,640 +1,640 @@
 body {
-     font-family: Arial, sans-serif;
-     /* Sayfanın genel yazı tipini belirler */
-     margin: 40px;
-     /* Sayfanın dış kenar boşluğunu ayarlar */
-
- }
-
- h2 {
-     margin: 0px;
-     /* Başlığın dış kenar boşluğunu sıfırlar */
-     padding: 0px;
-     /* Başlığın iç kenar boşluğunu sıfırlar */
-     margin-bottom: 20px;
-     /* Başlığın altına 20px boşluk ekler */
-     text-align: center;
-     /* Başlığı ortalar */
- }
-
- button {
-
-     margin: 15px;
-
-     /* Butonların dışına 15px boşluk ekler */
- }
-
- .jsgrid-pager {
-     margin: 20px 0 0 0;
-     /* Sayfalama alanının üstüne 20px boşluk bırakır */
-     text-align: center;
-     /* Sayfalama linklerini ortalar */
-     font-size: 15px;
-     /* Sayfalama yazı boyutunu ayarlar */
-     font-family: Arial, sans-serif;
-     /* Sayfalama yazı tipini belirler */
- }
-
- .jsgrid-pager a {
-     color: #1976d2;
-     /* Sayfalama linklerinin rengini belirler */
-     text-decoration: none;
-     /* Linklerin altındaki çizgiyi kaldırır */
-     margin: 0 6px;
-     /* Linkler arasına boşluk koyar */
-     padding: 2px 6px;
-     /* Linklerin içine dolgu ekler */
-     border-radius: 15px;
-     /* Linklerin köşelerini yuvarlatır */
-     transition: background 0.2s, color 0.2s;
-     /* Geçiş animasyonu ekler */
-     border: 1px solid transparent;
-     /* Şeffaf bir kenarlık ekler */
- }
-
- .jsgrid-pager a:hover {
-     background: #1976d2;
-     /* Fare üzerine gelince arka plan rengini değiştirir */
-     color: #000;
-     /* Fare üzerine gelince yazı rengini siyah yapar */
-     border: 1px solid #1976d2;
-     /* Fare üzerine gelince kenarlık rengini değiştirir */
- }
-
- .jsgrid-pager .jsgrid-pager-current-page {
-     font-weight: bold;
-     /* Aktif sayfa numarasını kalın yapar */
-     color: #fff;
-     /* Aktif sayfa numarasının yazı rengini beyaz yapar */
-     background: #1976d2;
-     /* Aktif sayfa numarasının arka planını mavi yapar */
-     border-radius: 4px;
-     /* Aktif sayfa numarasının köşelerini yuvarlatır */
-     padding: 4px 10px;
-     /* Aktif sayfa numarasının içine dolgu ekler */
-     margin: 0 6px;
-     /* Aktif sayfa numarası etrafına boşluk koyar */
-     border: 1px solid #1976d2;
-     /* Aktif sayfa numarasına kenarlık ekler */
- }
-
- .jsgrid-pager span {
-     margin: 0 6px;
-     /* Sayfalama elemanları arasına boşluk koyar */
- }
-
- .jsgrid-grid-header {
-     background-color: #1976d2;
-     /* Tablo başlığının arka plan rengini mavi yapar */
-     color: white;
-     /* Tablo başlığının yazı rengini beyaz yapar */
-     font-size: 16px;
-     /* Tablo başlığının yazı boyutunu ayarlar */
- }
-
- .jsgrid-header-cell {
-     color: black;
-     /* Başlık hücrelerindeki yazı rengini siyah yapar */
- }
-
- .jsgrid-header-row>.jsgrid-header-cell {
-     padding: 10px;
-     /* Başlık hücrelerinin içine 10px dolgu ekler */
- }
-
- .jsgrid-row>.jsgrid-cell,
- .jsgrid-alt-row>.jsgrid-cell {
-     padding: 10px;
-     /* Tablo satır hücrelerinin içine 10px dolgu ekler */
- }
-
- .jsgrid-row {
-     background-color: #f9f9f9;
-     /* Normal tablo satırlarının arka plan rengini ayarlar */
- }
-
- .jsgrid-alt-row {
-     background-color: #eeeeee;
-     /* Alternatif (çift) tablo satırlarının arka plan rengini ayarlar */
- }
-
- .jsgrid-selected-row>.jsgrid-cell {
-     background-color: #c3d4e5;
-     /* Seçili satırın arka plan rengini ayarlar */
- }
-
- .jsgrid-filter-row input,
- .jsgrid-filter-row select {
-     width: 90%;
-     /* Filtreleme satırındaki giriş alanlarının genişliğini ayarlar */
-     padding: 5px;
-     /* Filtreleme satırındaki giriş alanlarının içine dolgu ekler */
- }
-
- .jsgrid-insert-row input,
- .jsgrid-insert-row select {
-     width: 90%;
-     /* Ekleme satırındaki giriş alanlarının genişliğini ayarlar */
-     padding: 5px;
-     /* Ekleme satırındaki giriş alanlarının içine dolgu ekler */
- }
-
- .jsgrid-edit-row input,
- .jsgrid-edit-row select {
-     width: 90%;
-     /* Düzenleme satırındaki giriş alanlarının genişliğini ayarlar */
-     padding: 5px;
-     /* Düzenleme satırındaki giriş alanlarının içine dolgu ekler */
- }
-
- .jsgrid-button {
-     margin: 0 5px;
-     /* Kontrol butonları (edit, delete) arasına boşluk koyar */
-     cursor: pointer;
-     /* Butonların üzerine gelince imleci el işareti yapar */
- }
-
- .jsgrid-header-sort-asc:after {
-     content: " ▲";
-     /* Artan sıralama yapıldığında başlığa yukarı ok ekler */
-     font-size: 12px;
- }
-
- .jsgrid-header-sort-desc:after {
-     content: " ▼";
-     /* Azalan sıralama yapıldığında başlığa aşağı ok ekler */
-     font-size: 12px;
- }
-
- .jsgrid-header-sortable:hover {
-     background-color: #1565c0;
-     /* Sıralanabilir başlığın üzerine gelince arka plan rengini değiştirir */
- }
-
- .jsgrid-control-field button {
-     background-color: #1976d2;
-     /* Kontrol butonlarının arka plan rengini mavi yapar */
-     color: white;
-     /* Kontrol butonlarının yazı rengini beyaz yapar */
-     border: none;
-     /* Kenarlığı kaldırır */
-     padding: 8px 12px;
-     /* Butonların içine dolgu ekler */
-     border-radius: 4px;
-     /* Butonların köşelerini yuvarlatır */
-     cursor: pointer;
-     /* İmleci el işareti yapar */
-     transition: background-color 0.3s;
-     /* Arka plan rengi değişimine animasyon ekler */
- }
-
- .jsgrid-control-field button:hover {
-     background-color: #1565c0;
-     /* Kontrol butonlarının üzerine gelince rengini koyu mavi yapar */
- }
-
- .jsgrid-nodata-row .jsgrid-cell {
-     text-align: center;
-     /* "Veri yok" mesajını ortalar */
-     padding: 20px;
-     /* "Veri yok" mesajına dolgu ekler */
-     font-size: 18px;
-     /* "Veri yok" mesajının yazı boyutunu ayarlar */
-     color: #757575;
-     /* "Veri yok" mesajının rengini ayarlar */
- }
-
- .jsgrid-grid-body {
-     min-height: 200px;
-     /* Tablo gövdesinin minimum yüksekliğini belirler */
- }
-
- .jsgrid-load-panel {
-     position: absolute;
-     /* Yükleniyor panelini mutlak konumlandırır */
-     top: 50%;
-     left: 50%;
-     transform: translate(-50%, -50%);
-     /* Paneli tam ortaya hizalar */
-     background: rgba(255, 255, 255, 0.8);
-     /* Yarı saydam beyaz arka plan */
-     padding: 20px;
-     /* Panel içine dolgu ekler */
-     border-radius: 8px;
-     /* Panelin köşelerini yuvarlatır */
-     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-     /* Panele gölge ekler */
-     z-index: 1000;
-     /* Panelin diğer elemanların üzerinde olmasını sağlar */
- }
-
- .jsgrid-load-shader {
-     position: absolute;
-     /* Yükleniyor gölgesini mutlak konumlandırır */
-     top: 0;
-     left: 0;
-     width: 100%;
-     height: 100%;
-     background: rgba(0, 0, 0, 0.1);
-     /* Yarı saydam siyah arka plan */
-     z-index: 999;
-     /* Diğer elemanların üzerinde ama panelin altında kalmasını sağlar */
- }
-
- .jsgrid-load-indicator {
-     width: 60px;
-     height: 60px;
-     border: 5px solid #f3f3f3;
-     /* Yükleme göstergesinin halkasını oluşturur */
-     border-top: 5px solid #1976d2;
-     /* Halkanın üst kısmını mavi yapar */
-     border-radius: 50%;
-     /* Tam bir daire yapar */
-     animation: spin 1s linear infinite;
-     /* Dönme animasyonunu uygular */
- }
-
- @keyframes spin {
-     0% {
-         transform: rotate(0deg);
-         /* Animasyon başlangıcı */
-     }
-
-     100% {
-         transform: rotate(360deg);
-         /* Animasyon sonu (tam tur) */
-     }
- }
-
- .jsgrid-pager-page a,
- .jsgrid-pager-nav-button a {
-     padding: 5px 10px;
-     /* Sayfalama butonlarına dolgu ekler */
-     border-radius: 4px;
-     /* Sayfalama butonlarının köşelerini yuvarlatır */
- }
-
- .jsgrid-pager-current-page {
-     background-color: #1976d2;
-     /* Aktif sayfa numarasının arka planını mavi yapar */
-     color: white;
-     /* Aktif sayfa numarasının yazı rengini beyaz yapar */
-     border-radius: 4px;
-     /* Köşeleri yuvarlatır */
-     padding: 5px 10px;
-     /* İçine dolgu ekler */
- }
-
- .jsgrid-pager-page a:hover,
- .jsgrid-pager-nav-button a:hover {
-     background-color: #e3f2fd;
-     /* Sayfalama butonlarının üzerine gelince arka plan rengini değiştirir */
- }
-
- .jsgrid-header-cell {
-     font-weight: bold;
-     /* Başlık hücrelerindeki yazıyı kalın yapar */
- }
-
- .jsgrid-cell {
-     border: 1px solid #ddd;
-     /* Hücrelere kenarlık ekler */
- }
-
- .jsgrid-grid-header {
-     border-bottom: 2px solid #1976d2;
-     /* Tablo başlığının altına kalın mavi bir çizgi ekler */
- }
-
- .jsgrid-table {
-     border-collapse: collapse;
-     /* Tablo kenarlıklarını birleştirir */
- }
-
- .jsgrid-filter-row .jsgrid-cell,
- .jsgrid-insert-row .jsgrid-cell,
- .jsgrid-edit-row .jsgrid-cell {
-     border-color: #1976d2;
-     /* Filtre, ekleme ve düzenleme satırlarındaki hücrelerin kenarlık rengini mavi yapar */
- }
-
- .jsgrid-filter-row input,
- .jsgrid-insert-row input,
- .jsgrid-edit-row input {
-     border: 1px solid #ccc;
-     /* Giriş alanlarına kenarlık ekler */
-     border-radius: 4px;
-     /* Giriş alanlarının köşelerini yuvarlatır */
-     padding: 6px;
-     /* Giriş alanlarına dolgu ekler */
- }
-
- .jsgrid-filter-row input:focus,
- .jsgrid-insert-row input:focus,
- .jsgrid-edit-row input:focus {
-     border-color: #1976d2;
-     /* Odaklanıldığında giriş alanlarının kenarlık rengini mavi yapar */
-     box-shadow: 0 0 5px rgba(25, 118, 210, 0.5);
-     /* Odaklanıldığında mavi bir gölge ekler */
-     outline: none;
-     /* Tarayıcının varsayılan odak çerçevesini kaldırır */
- }
-
- .jsgrid-insert-button,
- .jsgrid-edit-button,
- .jsgrid-delete-button,
- .jsgrid-update-button,
- .jsgrid-cancel-edit-button {
-     font-size: 1.5em;
-     /* Kontrol ikonlarının boyutunu büyütür */
-     padding: 0.2em;
-     /* İkonlara dolgu ekler */
- }
-
- .jsgrid-search-button {
-     background-color: #1976d2;
-     /* Arama butonunun arka planını mavi yapar */
-     color: white;
-     /* Arama butonunun yazı rengini beyaz yapar */
-     border: none;
-     /* Kenarlığı kaldırır */
-     padding: 8px 12px;
-     /* Butona dolgu ekler */
-     border-radius: 4px;
-     /* Köşeleri yuvarlatır */
-     cursor: pointer;
-     /* İmleci el işareti yapar */
-     transition: background-color 0.3s;
-     /* Geçiş animasyonu ekler */
- }
-
- .jsgrid-search-button:hover {
-     background-color: #1565c0;
-     /* Üzerine gelince rengini koyu mavi yapar */
- }
-
- .jsgrid-clear-filter-button {
-     background-color: #757575;
-     /* Filtreyi temizle butonunun arka planını gri yapar */
-     color: white;
-     /* Yazı rengini beyaz yapar */
-     border: none;
-     /* Kenarlığı kaldırır */
-     padding: 8px 12px;
-     /* Butona dolgu ekler */
-     border-radius: 4px;
-     /* Köşeleri yuvarlatır */
-     cursor: pointer;
-     /* İmleci el işareti yapar */
-     transition: background-color 0.3s;
-     /* Geçiş animasyonu ekler */
- }
-
- .jsgrid-clear-filter-button:hover {
-     background-color: #616161;
-     /* Üzerine gelince rengini koyu gri yapar */
- }
-
- .jsgrid-error-row .jsgrid-cell {
-     background-color: #ffebee;
-     /* Hata satırının arka planını açık kırmızı yapar */
-     color: #c62828;
-     /* Hata mesajının rengini koyu kırmızı yapar */
-     padding: 10px;
-     /* Hata satırına dolgu ekler */
-     border: 1px solid #c62828;
-     /* Hata satırına kırmızı kenarlık ekler */
- }
-
- .jsgrid-invalid .jsgrid-cell {
-     background-color: #ffebee;
-     /* Geçersiz hücrenin arka planını açık kırmızı yapar */
- }
-
- .jsgrid-invalid input {
-     border-color: #c62828 !important;
-     /* Geçersiz giriş alanının kenarlığını kırmızı yapar */
- }
-
- .jsgrid-validation-message {
-     color: #c62828;
-     /* Doğrulama mesajının rengini kırmızı yapar */
-     font-size: 0.9em;
-     /* Doğrulama mesajının yazı boyutunu küçültür */
-     margin-top: 4px;
-     /* Mesajın üstüne boşluk ekler */
- }
-
- .jsgrid-grid-header,
- .jsgrid-grid-body,
- .jsgrid-pager-container {
-     border: 1px solid #ddd;
-     /* Tablonun ana bölümlerine kenarlık ekler */
- }
-
- .jsgrid-grid-header {
-     border-bottom: none;
-     /* Başlığın alt kenarlığını kaldırır (çift kenarlığı önlemek için) */
- }
-
- .jsgrid-table {
-     border: none;
-     /* Ana tablo kenarlığını kaldırır */
- }
-
- .jsgrid-header-row>.jsgrid-header-cell:first-child,
- .jsgrid-filter-row>.jsgrid-cell:first-child,
- .jsgrid-insert-row>.jsgrid-cell:first-child,
- .jsgrid-row>.jsgrid-cell:first-child,
- .jsgrid-alt-row>.jsgrid-cell:first-child {
-     border-left: none;
-     /* Satırların ilk hücresinin sol kenarlığını kaldırır */
- }
-
- .jsgrid-header-row>.jsgrid-header-cell:last-child,
- .jsgrid-filter-row>.jsgrid-cell:last-child,
- .jsg
-
- /* Modal (Kart) Stilleri */
- .modal-overlay {
-     display: none;
-     /* Başlangıçta gizli olan ve modal açıldığında arkaplanı karartan katman */
-     position: fixed;
-     /* Sayfayı kaplaması için sabit konumlandırma */
-     top: 0;
-     left: 0;
-     width: 100%;
-     height: 100%;
-     background-color: rgba(0, 0, 0, 0.6);
-     /* Yarı saydam siyah arka plan */
-     z-index: 999;
-     /* Modal'ın arkasında kalmasını sağlar */
- }
-
- .modal {
-     display: none;
-     /* Başlangıçta gizli olan modal penceresi */
-     position: fixed;
-     /* Sayfanın üzerinde sabit kalır */
-     top: 50%;
-     left: 50%;
-     transform: translate(-50%, -50%);
-     /* Dikey ve yatayda tam ortalamak için */
-     background-color: #fff;
-     /* Modal arka plan rengi */
-     border-radius: 8px;
-     /* Köşeleri yuvarlatır */
-     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-     /* Göze hoş gelen bir gölge ekler */
-     z-index: 1000;
-     /* Diğer tüm elemanların üzerinde görünür */
-     width: 500px;
-     /* Sabit genişlik */
-     max-width: 90%;
-     /* Maksimum genişliği 700px ile sınırlar */
-     overflow: hidden;
-     /* İçerik taşarsa gizler */
- }
-
- .modal-header {
-     background-color: #1976d2;
-     /* Modal başlığının arka plan rengi */
-     color: white;
-     /* Başlık yazı rengi */
-     padding: 15px 20px;
-     /* Başlık içine dolgu ekler */
-     display: flex;
-     /* Flexbox modelini etkinleştirir */
-     justify-content: space-between;
-     /* İçerikleri (başlık ve kapatma butonu) iki uca yaslar */
-     align-items: center;
-     /* İçerikleri dikeyde ortalar */
-     border-top-left-radius: 8px;
-     /* Sol üst köşeyi yuvarlatır */
-     border-top-right-radius: 8px;
-     /* Sağ üst köşeyi yuvarlatır */
- }
-
- .modal-header h3 {
-     margin: 0;
-     /* Başlık metninin dış boşluğunu sıfırlar */
-     font-size: 20px;
-     /* Başlık yazı boyutunu ayarlar */
- }
-
- .close-button {
-     color: white;
-     /* Kapatma ikonunun rengi */
-     font-size: 28px;
-     /* İkon boyutunu büyütür */
-     font-weight: bold;
-     /* İkonu kalın yapar */
-     cursor: pointer;
-     /* İmleci el işareti yapar */
- }
-
- .close-button:hover {
-     color: #e0e0e0;
-     /* Üzerine gelince ikon rengini biraz açar */
- }
-
- .modal-body {
-     padding: 20px;
-     /* Modal gövdesine dolgu ekler */
- }
-
- .form-group {
-     margin-bottom: 15px;
-     /* Form grupları arasına boşluk bırakır */
- }
-
- .form-group label {
-     display: block;
-     /* Etiketi blok seviyesinde bir eleman yapar (alt satıra geçer) */
-     margin-bottom: 5px;
-     /* Etiket ile giriş alanı arasına boşluk koyar */
-     font-weight: bold;
-     /* Etiket yazısını kalın yapar */
-     color: #333;
-     /* Etiket rengini ayarlar */
- }
-
- .form-group input[type="text"],
- .form-group input[type="number"],
- .form-group input[type="email"],
- .form-group input[type="file"] {
-     width: calc(100% - 22px);
-     /* Genişliği %100 yapar ve padding/border değerlerini hesaba katar */
-     padding: 10px;
-     /* Giriş alanlarına dolgu ekler */
-     border: 1px solid #ddd;
-     /* Kenarlık ekler */
-     border-radius: 4px;
-     /* Köşeleri yuvarlatır */
-     font-size: 16px;
-     /* Yazı boyutunu ayarlar */
- }
-
- .form-group input[type="text"]:focus,
- .form-group input[type="number"]:focus,
- .form-group input[type="email"]:focus,
- .form-group input[type="file"]:focus {
-     border-color: #1976d2;
-     /* Odaklanıldığında kenarlık rengini mavi yapar */
-     box-shadow: 0 0 5px rgba(25, 118, 210, 0.5);
-     /* Odaklanıldığında mavi bir gölge ekler */
-     outline: none;
-     /* Tarayıcının varsayılan odak çerçevesini kaldırır */
- }
-
- .form-actions {
-     text-align: right;
-     /* Form eylem butonlarını sağa hizalar */
-     padding-top: 15px;
-     /* Butonların üstüne dolgu ekler */
-     border-top: 1px solid #eee;
-     /* Butonların üstüne ayırıcı bir çizgi ekler */
-     margin-top: 20px;
-     /* Butonların üstüne boşluk ekler */
- }
-
- .btn {
-     padding: 10px 20px;
-     /* Genel buton dolgusu */
-     border: none;
-     /* Kenarlığı kaldırır */
-     border-radius: 5px;
-     /* Köşeleri yuvarlatır */
-     cursor: pointer;
-     /* İmleci el işareti yapar */
-     font-size: 16px;
-     /* Yazı boyutunu ayarlar */
-     transition: background-color 0.3s ease;
-     /* Geçiş animasyonu ekler */
-     margin-left: 10px;
-     /* Butonların soluna boşluk ekler */
- }
-
- .btn-primary {
-     background-color: #1976d2;
-     /* Ana butonun arka plan rengi (mavi) */
-     color: white;
-     /* Yazı rengi */
- }
-
- .btn-primary:hover {
-     background-color: #1565c0;
-     /* Üzerine gelince rengi koyulaştırır */
- }
-
- .btn-secondary {
-     background-color: #6c757d;
-     /* İkincil butonun arka plan rengi (gri) */
-     color: white;
-     /* Yazı rengi */
- }
-
- .btn-secondary:hover {
-     background-color: #5a6268;
-     /* Üzerine gelince rengi koyulaştırır */
- }
+    font-family: Arial, sans-serif;
+    /* Sayfanın genel yazı tipini belirler */
+    margin: 40px;
+    /* Sayfanın dış kenar boşluğunu ayarlar */
+
+}
+
+h2 {
+    margin: 0px;
+    /* Başlığın dış kenar boşluğunu sıfırlar */
+    padding: 0px;
+    /* Başlığın iç kenar boşluğunu sıfırlar */
+    margin-bottom: 20px;
+    /* Başlığın altına 20px boşluk ekler */
+    text-align: center;
+    /* Başlığı ortalar */
+}
+
+button {
+
+    margin: 15px;
+
+    /* Butonların dışına 15px boşluk ekler */
+}
+
+.jsgrid-pager {
+    margin: 20px 0 0 0;
+    /* Sayfalama alanının üstüne 20px boşluk bırakır */
+    text-align: center;
+    /* Sayfalama linklerini ortalar */
+    font-size: 15px;
+    /* Sayfalama yazı boyutunu ayarlar */
+    font-family: Arial, sans-serif;
+    /* Sayfalama yazı tipini belirler */
+}
+
+.jsgrid-pager a {
+    color: #1976d2;
+    /* Sayfalama linklerinin rengini belirler */
+    text-decoration: none;
+    /* Linklerin altındaki çizgiyi kaldırır */
+    margin: 0 6px;
+    /* Linkler arasına boşluk koyar */
+    padding: 2px 6px;
+    /* Linklerin içine dolgu ekler */
+    border-radius: 15px;
+    /* Linklerin köşelerini yuvarlatır */
+    transition: background 0.2s, color 0.2s;
+    /* Geçiş animasyonu ekler */
+    border: 1px solid transparent;
+    /* Şeffaf bir kenarlık ekler */
+}
+
+.jsgrid-pager a:hover {
+    background: #1976d2;
+    /* Fare üzerine gelince arka plan rengini değiştirir */
+    color: #000;
+    /* Fare üzerine gelince yazı rengini siyah yapar */
+    border: 1px solid #1976d2;
+    /* Fare üzerine gelince kenarlık rengini değiştirir */
+}
+
+.jsgrid-pager .jsgrid-pager-current-page {
+    font-weight: bold;
+    /* Aktif sayfa numarasını kalın yapar */
+    color: #fff;
+    /* Aktif sayfa numarasının yazı rengini beyaz yapar */
+    background: #1976d2;
+    /* Aktif sayfa numarasının arka planını mavi yapar */
+    border-radius: 4px;
+    /* Aktif sayfa numarasının köşelerini yuvarlatır */
+    padding: 4px 10px;
+    /* Aktif sayfa numarasının içine dolgu ekler */
+    margin: 0 6px;
+    /* Aktif sayfa numarası etrafına boşluk koyar */
+    border: 1px solid #1976d2;
+    /* Aktif sayfa numarasına kenarlık ekler */
+}
+
+.jsgrid-pager span {
+    margin: 0 6px;
+    /* Sayfalama elemanları arasına boşluk koyar */
+}
+
+.jsgrid-grid-header {
+    background-color: #1976d2;
+    /* Tablo başlığının arka plan rengini mavi yapar */
+    color: white;
+    /* Tablo başlığının yazı rengini beyaz yapar */
+    font-size: 16px;
+    /* Tablo başlığının yazı boyutunu ayarlar */
+}
+
+.jsgrid-header-cell {
+    color: black;
+    /* Başlık hücrelerindeki yazı rengini siyah yapar */
+}
+
+.jsgrid-header-row>.jsgrid-header-cell {
+    padding: 10px;
+    /* Başlık hücrelerinin içine 10px dolgu ekler */
+}
+
+.jsgrid-row>.jsgrid-cell,
+.jsgrid-alt-row>.jsgrid-cell {
+    padding: 10px;
+    /* Tablo satır hücrelerinin içine 10px dolgu ekler */
+}
+
+.jsgrid-row {
+    background-color: #f9f9f9;
+    /* Normal tablo satırlarının arka plan rengini ayarlar */
+}
+
+.jsgrid-alt-row {
+    background-color: #eeeeee;
+    /* Alternatif (çift) tablo satırlarının arka plan rengini ayarlar */
+}
+
+.jsgrid-selected-row>.jsgrid-cell {
+    background-color: #c3d4e5;
+    /* Seçili satırın arka plan rengini ayarlar */
+}
+
+.jsgrid-filter-row input,
+.jsgrid-filter-row select {
+    width: 90%;
+    /* Filtreleme satırındaki giriş alanlarının genişliğini ayarlar */
+    padding: 5px;
+    /* Filtreleme satırındaki giriş alanlarının içine dolgu ekler */
+}
+
+.jsgrid-insert-row input,
+.jsgrid-insert-row select {
+    width: 90%;
+    /* Ekleme satırındaki giriş alanlarının genişliğini ayarlar */
+    padding: 5px;
+    /* Ekleme satırındaki giriş alanlarının içine dolgu ekler */
+}
+
+.jsgrid-edit-row input,
+.jsgrid-edit-row select {
+    width: 90%;
+    /* Düzenleme satırındaki giriş alanlarının genişliğini ayarlar */
+    padding: 5px;
+    /* Düzenleme satırındaki giriş alanlarının içine dolgu ekler */
+}
+
+.jsgrid-button {
+    margin: 0 5px;
+    /* Kontrol butonları (edit, delete) arasına boşluk koyar */
+    cursor: pointer;
+    /* Butonların üzerine gelince imleci el işareti yapar */
+}
+
+.jsgrid-header-sort-asc:after {
+    content: " ▲";
+    /* Artan sıralama yapıldığında başlığa yukarı ok ekler */
+    font-size: 12px;
+}
+
+.jsgrid-header-sort-desc:after {
+    content: " ▼";
+    /* Azalan sıralama yapıldığında başlığa aşağı ok ekler */
+    font-size: 12px;
+}
+
+.jsgrid-header-sortable:hover {
+    background-color: #1565c0;
+    /* Sıralanabilir başlığın üzerine gelince arka plan rengini değiştirir */
+}
+
+.jsgrid-control-field button {
+    background-color: #1976d2;
+    /* Kontrol butonlarının arka plan rengini mavi yapar */
+    color: white;
+    /* Kontrol butonlarının yazı rengini beyaz yapar */
+    border: none;
+    /* Kenarlığı kaldırır */
+    padding: 8px 12px;
+    /* Butonların içine dolgu ekler */
+    border-radius: 4px;
+    /* Butonların köşelerini yuvarlatır */
+    cursor: pointer;
+    /* İmleci el işareti yapar */
+    transition: background-color 0.3s;
+    /* Arka plan rengi değişimine animasyon ekler */
+}
+
+.jsgrid-control-field button:hover {
+    background-color: #1565c0;
+    /* Kontrol butonlarının üzerine gelince rengini koyu mavi yapar */
+}
+
+.jsgrid-nodata-row .jsgrid-cell {
+    text-align: center;
+    /* "Veri yok" mesajını ortalar */
+    padding: 20px;
+    /* "Veri yok" mesajına dolgu ekler */
+    font-size: 18px;
+    /* "Veri yok" mesajının yazı boyutunu ayarlar */
+    color: #757575;
+    /* "Veri yok" mesajının rengini ayarlar */
+}
+
+.jsgrid-grid-body {
+    min-height: 200px;
+    /* Tablo gövdesinin minimum yüksekliğini belirler */
+}
+
+.jsgrid-load-panel {
+    position: absolute;
+    /* Yükleniyor panelini mutlak konumlandırır */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Paneli tam ortaya hizalar */
+    background: rgba(255, 255, 255, 0.8);
+    /* Yarı saydam beyaz arka plan */
+    padding: 20px;
+    /* Panel içine dolgu ekler */
+    border-radius: 8px;
+    /* Panelin köşelerini yuvarlatır */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Panele gölge ekler */
+    z-index: 1000;
+    /* Panelin diğer elemanların üzerinde olmasını sağlar */
+}
+
+.jsgrid-load-shader {
+    position: absolute;
+    /* Yükleniyor gölgesini mutlak konumlandırır */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.1);
+    /* Yarı saydam siyah arka plan */
+    z-index: 999;
+    /* Diğer elemanların üzerinde ama panelin altında kalmasını sağlar */
+}
+
+.jsgrid-load-indicator {
+    width: 60px;
+    height: 60px;
+    border: 5px solid #f3f3f3;
+    /* Yükleme göstergesinin halkasını oluşturur */
+    border-top: 5px solid #1976d2;
+    /* Halkanın üst kısmını mavi yapar */
+    border-radius: 50%;
+    /* Tam bir daire yapar */
+    animation: spin 1s linear infinite;
+    /* Dönme animasyonunu uygular */
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+        /* Animasyon başlangıcı */
+    }
+
+    100% {
+        transform: rotate(360deg);
+        /* Animasyon sonu (tam tur) */
+    }
+}
+
+.jsgrid-pager-page a,
+.jsgrid-pager-nav-button a {
+    padding: 5px 10px;
+    /* Sayfalama butonlarına dolgu ekler */
+    border-radius: 4px;
+    /* Sayfalama butonlarının köşelerini yuvarlatır */
+}
+
+.jsgrid-pager-current-page {
+    background-color: #1976d2;
+    /* Aktif sayfa numarasının arka planını mavi yapar */
+    color: white;
+    /* Aktif sayfa numarasının yazı rengini beyaz yapar */
+    border-radius: 4px;
+    /* Köşeleri yuvarlatır */
+    padding: 5px 10px;
+    /* İçine dolgu ekler */
+}
+
+.jsgrid-pager-page a:hover,
+.jsgrid-pager-nav-button a:hover {
+    background-color: #e3f2fd;
+    /* Sayfalama butonlarının üzerine gelince arka plan rengini değiştirir */
+}
+
+.jsgrid-header-cell {
+    font-weight: bold;
+    /* Başlık hücrelerindeki yazıyı kalın yapar */
+}
+
+.jsgrid-cell {
+    border: 1px solid #ddd;
+    /* Hücrelere kenarlık ekler */
+}
+
+.jsgrid-grid-header {
+    border-bottom: 2px solid #1976d2;
+    /* Tablo başlığının altına kalın mavi bir çizgi ekler */
+}
+
+.jsgrid-table {
+    border-collapse: collapse;
+    /* Tablo kenarlıklarını birleştirir */
+}
+
+.jsgrid-filter-row .jsgrid-cell,
+.jsgrid-insert-row .jsgrid-cell,
+.jsgrid-edit-row .jsgrid-cell {
+    border-color: #1976d2;
+    /* Filtre, ekleme ve düzenleme satırlarındaki hücrelerin kenarlık rengini mavi yapar */
+}
+
+.jsgrid-filter-row input,
+.jsgrid-insert-row input,
+.jsgrid-edit-row input {
+    border: 1px solid #ccc;
+    /* Giriş alanlarına kenarlık ekler */
+    border-radius: 4px;
+    /* Giriş alanlarının köşelerini yuvarlatır */
+    padding: 6px;
+    /* Giriş alanlarına dolgu ekler */
+}
+
+.jsgrid-filter-row input:focus,
+.jsgrid-insert-row input:focus,
+.jsgrid-edit-row input:focus {
+    border-color: #1976d2;
+    /* Odaklanıldığında giriş alanlarının kenarlık rengini mavi yapar */
+    box-shadow: 0 0 5px rgba(25, 118, 210, 0.5);
+    /* Odaklanıldığında mavi bir gölge ekler */
+    outline: none;
+    /* Tarayıcının varsayılan odak çerçevesini kaldırır */
+}
+
+.jsgrid-insert-button,
+.jsgrid-edit-button,
+.jsgrid-delete-button,
+.jsgrid-update-button,
+.jsgrid-cancel-edit-button {
+    font-size: 1.5em;
+    /* Kontrol ikonlarının boyutunu büyütür */
+    padding: 0.2em;
+    /* İkonlara dolgu ekler */
+}
+
+.jsgrid-search-button {
+    background-color: #1976d2;
+    /* Arama butonunun arka planını mavi yapar */
+    color: white;
+    /* Arama butonunun yazı rengini beyaz yapar */
+    border: none;
+    /* Kenarlığı kaldırır */
+    padding: 8px 12px;
+    /* Butona dolgu ekler */
+    border-radius: 4px;
+    /* Köşeleri yuvarlatır */
+    cursor: pointer;
+    /* İmleci el işareti yapar */
+    transition: background-color 0.3s;
+    /* Geçiş animasyonu ekler */
+}
+
+.jsgrid-search-button:hover {
+    background-color: #1565c0;
+    /* Üzerine gelince rengini koyu mavi yapar */
+}
+
+.jsgrid-clear-filter-button {
+    background-color: #757575;
+    /* Filtreyi temizle butonunun arka planını gri yapar */
+    color: white;
+    /* Yazı rengini beyaz yapar */
+    border: none;
+    /* Kenarlığı kaldırır */
+    padding: 8px 12px;
+    /* Butona dolgu ekler */
+    border-radius: 4px;
+    /* Köşeleri yuvarlatır */
+    cursor: pointer;
+    /* İmleci el işareti yapar */
+    transition: background-color 0.3s;
+    /* Geçiş animasyonu ekler */
+}
+
+.jsgrid-clear-filter-button:hover {
+    background-color: #616161;
+    /* Üzerine gelince rengini koyu gri yapar */
+}
+
+.jsgrid-error-row .jsgrid-cell {
+    background-color: #ffebee;
+    /* Hata satırının arka planını açık kırmızı yapar */
+    color: #c62828;
+    /* Hata mesajının rengini koyu kırmızı yapar */
+    padding: 10px;
+    /* Hata satırına dolgu ekler */
+    border: 1px solid #c62828;
+    /* Hata satırına kırmızı kenarlık ekler */
+}
+
+.jsgrid-invalid .jsgrid-cell {
+    background-color: #ffebee;
+    /* Geçersiz hücrenin arka planını açık kırmızı yapar */
+}
+
+.jsgrid-invalid input {
+    border-color: #c62828 !important;
+    /* Geçersiz giriş alanının kenarlığını kırmızı yapar */
+}
+
+.jsgrid-validation-message {
+    color: #c62828;
+    /* Doğrulama mesajının rengini kırmızı yapar */
+    font-size: 0.9em;
+    /* Doğrulama mesajının yazı boyutunu küçültür */
+    margin-top: 4px;
+    /* Mesajın üstüne boşluk ekler */
+}
+
+.jsgrid-grid-header,
+.jsgrid-grid-body,
+.jsgrid-pager-container {
+    border: 1px solid #ddd;
+    /* Tablonun ana bölümlerine kenarlık ekler */
+}
+
+.jsgrid-grid-header {
+    border-bottom: none;
+    /* Başlığın alt kenarlığını kaldırır (çift kenarlığı önlemek için) */
+}
+
+.jsgrid-table {
+    border: none;
+    /* Ana tablo kenarlığını kaldırır */
+}
+
+.jsgrid-header-row>.jsgrid-header-cell:first-child,
+.jsgrid-filter-row>.jsgrid-cell:first-child,
+.jsgrid-insert-row>.jsgrid-cell:first-child,
+.jsgrid-row>.jsgrid-cell:first-child,
+.jsgrid-alt-row>.jsgrid-cell:first-child {
+    border-left: none;
+    /* Satırların ilk hücresinin sol kenarlığını kaldırır */
+}
+
+.jsgrid-header-row>.jsgrid-header-cell:last-child,
+.jsgrid-filter-row>.jsgrid-cell:last-child,
+.jsg
+
+/* Modal (Kart) Stilleri */
+.modal-overlay {
+    display: none;
+    /* Başlangıçta gizli olan ve modal açıldığında arkaplanı karartan katman */
+    position: fixed;
+    /* Sayfayı kaplaması için sabit konumlandırma */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    /* Yarı saydam siyah arka plan */
+    z-index: 999;
+    /* Modal'ın arkasında kalmasını sağlar */
+}
+
+.modal {
+    display: none;
+    /* Başlangıçta gizli olan modal penceresi */
+    position: fixed;
+    /* Sayfanın üzerinde sabit kalır */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Dikey ve yatayda tam ortalamak için */
+    background-color: #fff;
+    /* Modal arka plan rengi */
+    border-radius: 8px;
+    /* Köşeleri yuvarlatır */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    /* Göze hoş gelen bir gölge ekler */
+    z-index: 1000;
+    /* Diğer tüm elemanların üzerinde görünür */
+    width: 500px;
+    /* Sabit genişlik */
+    max-width: 90%;
+    /* Maksimum genişliği 700px ile sınırlar */
+    overflow: hidden;
+    /* İçerik taşarsa gizler */
+}
+
+.modal-header {
+    background-color: #1976d2;
+    /* Modal başlığının arka plan rengi */
+    color: white;
+    /* Başlık yazı rengi */
+    padding: 15px 20px;
+    /* Başlık içine dolgu ekler */
+    display: flex;
+    /* Flexbox modelini etkinleştirir */
+    justify-content: space-between;
+    /* İçerikleri (başlık ve kapatma butonu) iki uca yaslar */
+    align-items: center;
+    /* İçerikleri dikeyde ortalar */
+    border-top-left-radius: 8px;
+    /* Sol üst köşeyi yuvarlatır */
+    border-top-right-radius: 8px;
+    /* Sağ üst köşeyi yuvarlatır */
+}
+
+.modal-header h3 {
+    margin: 0;
+    /* Başlık metninin dış boşluğunu sıfırlar */
+    font-size: 20px;
+    /* Başlık yazı boyutunu ayarlar */
+}
+
+.close-button {
+    color: white;
+    /* Kapatma ikonunun rengi */
+    font-size: 28px;
+    /* İkon boyutunu büyütür */
+    font-weight: bold;
+    /* İkonu kalın yapar */
+    cursor: pointer;
+    /* İmleci el işareti yapar */
+}
+
+.close-button:hover {
+    color: #e0e0e0;
+    /* Üzerine gelince ikon rengini biraz açar */
+}
+
+.modal-body {
+    padding: 20px;
+    /* Modal gövdesine dolgu ekler */
+}
+
+.form-group {
+    margin-bottom: 15px;
+    /* Form grupları arasına boşluk bırakır */
+}
+
+.form-group label {
+    display: block;
+    /* Etiketi blok seviyesinde bir eleman yapar (alt satıra geçer) */
+    margin-bottom: 5px;
+    /* Etiket ile giriş alanı arasına boşluk koyar */
+    font-weight: bold;
+    /* Etiket yazısını kalın yapar */
+    color: #333;
+    /* Etiket rengini ayarlar */
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="email"],
+.form-group input[type="file"] {
+    width: calc(100% - 22px);
+    /* Genişliği %100 yapar ve padding/border değerlerini hesaba katar */
+    padding: 10px;
+    /* Giriş alanlarına dolgu ekler */
+    border: 1px solid #ddd;
+    /* Kenarlık ekler */
+    border-radius: 4px;
+    /* Köşeleri yuvarlatır */
+    font-size: 16px;
+    /* Yazı boyutunu ayarlar */
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="number"]:focus,
+.form-group input[type="email"]:focus,
+.form-group input[type="file"]:focus {
+    border-color: #1976d2;
+    /* Odaklanıldığında kenarlık rengini mavi yapar */
+    box-shadow: 0 0 5px rgba(25, 118, 210, 0.5);
+    /* Odaklanıldığında mavi bir gölge ekler */
+    outline: none;
+    /* Tarayıcının varsayılan odak çerçevesini kaldırır */
+}
+
+.form-actions {
+    text-align: right;
+    /* Form eylem butonlarını sağa hizalar */
+    padding-top: 15px;
+    /* Butonların üstüne dolgu ekler */
+    border-top: 1px solid #eee;
+    /* Butonların üstüne ayırıcı bir çizgi ekler */
+    margin-top: 20px;
+    /* Butonların üstüne boşluk ekler */
+}
+
+.btn {
+    padding: 10px 20px;
+    /* Genel buton dolgusu */
+    border: none;
+    /* Kenarlığı kaldırır */
+    border-radius: 5px;
+    /* Köşeleri yuvarlatır */
+    cursor: pointer;
+    /* İmleci el işareti yapar */
+    font-size: 16px;
+    /* Yazı boyutunu ayarlar */
+    transition: background-color 0.3s ease;
+    /* Geçiş animasyonu ekler */
+    margin-left: 10px;
+    /* Butonların soluna boşluk ekler */
+}
+
+.btn-primary {
+    background-color: #1976d2;
+    /* Ana butonun arka plan rengi (mavi) */
+    color: white;
+    /* Yazı rengi */
+}
+
+.btn-primary:hover {
+    background-color: #1565c0;
+    /* Üzerine gelince rengi koyulaştırır */
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    /* İkincil butonun arka plan rengi (gri) */
+    color: white;
+    /* Yazı rengi */
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+    /* Üzerine gelince rengi koyulaştırır */
+}

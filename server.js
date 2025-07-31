@@ -58,53 +58,53 @@ db.run(`CREATE TABLE IF NOT EXISTS abonelikler (
 
 // GET: Listele (tüm alanlarda filtreli)
 app.get("/api/employees", (req, res) => {
-    const { Isim, Pozisyon, Ofis, Yas, Maas } = req.query;
-    let sql = "SELECT * FROM employees WHERE 1=1";
-    let params = [];
-    if (Isim) {
-        sql += " AND Isim LIKE ?";
-        params.push(`%${Isim}%`);
-    }
-    if (Pozisyon) {
-        sql += " AND Pozisyon LIKE ?";
-        params.push(`%${Pozisyon}%`);
-    }
-    if (Ofis) {
-        sql += " AND Ofis LIKE ?";
-        params.push(`%${Ofis}%`);
-    }
-    if (Yas) {
-        sql += " AND Yas = ?";
-        params.push(Yas);
-    }
-    if (Maas) {
-        sql += " AND Maas = ?";
-        params.push(Maas);
-    }
-    db.all(sql, params, (err, rows) => {
-        if (err) return res.status(500).json({ error: err.message });
-        // Her kayıtta 'resim' alanını 'Resim' olarak da ekle
-        const fixedRows = rows.map(row => {
-          if (row.resim !== undefined) row.Resim = row.resim;
-          return row;
-        });
-        console.log("API employees verisi:", fixedRows); // Debug için eklendi
-        res.json(fixedRows);
+  const { Isim, Pozisyon, Ofis, Yas, Maas } = req.query;
+  let sql = "SELECT * FROM employees WHERE 1=1";
+  let params = [];
+  if (Isim) {
+    sql += " AND Isim LIKE ?";
+    params.push(`%${Isim}%`);
+  }
+  if (Pozisyon) {
+    sql += " AND Pozisyon LIKE ?";
+    params.push(`%${Pozisyon}%`);
+  }
+  if (Ofis) {
+    sql += " AND Ofis LIKE ?";
+    params.push(`%${Ofis}%`);
+  }
+  if (Yas) {
+    sql += " AND Yas = ?";
+    params.push(Yas);
+  }
+  if (Maas) {
+    sql += " AND Maas = ?";
+    params.push(Maas);
+  }
+  db.all(sql, params, (err, rows) => {
+    if (err) return res.status(500).json({ error: err.message });
+    // Her kayıtta 'resim' alanını 'Resim' olarak da ekle
+    const fixedRows = rows.map(row => {
+      if (row.resim !== undefined) row.Resim = row.resim;
+      return row;
     });
+    console.log("API employees verisi:", fixedRows); // Debug için eklendi
+    res.json(fixedRows);
+  });
 });
 
 // POST: Yeni ekle
 app.post("/api/employees", upload.single('resim'), (req, res) => { // Yeni çalışan ekleyen POST endpoint'i
-    const { Isim, Pozisyon, Ofis, Yas, Maas } = req.body; // İstekten gelen yeni çalışan verisi
-    const resim = req.file ? req.file.filename : null;
-    db.run(
-        `INSERT INTO employees (Isim, Pozisyon, Ofis, Yas, Maas, Resim) VALUES (?, ?, ?, ?, ?, ?)`,
-        [Isim, Pozisyon, Ofis, Yas, Maas, resim],
-        function (err) {
-            if (err) return res.status(500).json({ error: err.message }); // Hata varsa 500 döner
-            res.json({ EmployeeId: this.lastID, Isim, Pozisyon, Ofis, Yas, Maas, Resim: resim }); // Eklenen çalışanı döndürür
-        }
-    );
+  const { Isim, Pozisyon, Ofis, Yas, Maas } = req.body; // İstekten gelen yeni çalışan verisi
+  const resim = req.file ? req.file.filename : null;
+  db.run(
+    `INSERT INTO employees (Isim, Pozisyon, Ofis, Yas, Maas, Resim) VALUES (?, ?, ?, ?, ?, ?)`,
+    [Isim, Pozisyon, Ofis, Yas, Maas, resim],
+    function (err) {
+      if (err) return res.status(500).json({ error: err.message }); // Hata varsa 500 döner
+      res.json({ EmployeeId: this.lastID, Isim, Pozisyon, Ofis, Yas, Maas, Resim: resim }); // Eklenen çalışanı döndürür
+    }
+  );
 });
 
 // PUT: Güncelle
@@ -123,7 +123,7 @@ app.put("/api/employees/:id", upload.single('resim'), (req, res) => { // Çalı�
   db.run(sql, params, function (err) {
     if (err) return res.status(500).json({ error: err.message }); // Hata varsa 500 döner
     // Son güncel kaydı çekip Resim alanını da döndür
-    db.get('SELECT * FROM employees WHERE EmployeeId=?', [req.params.id], function(err2, row) {
+    db.get('SELECT * FROM employees WHERE EmployeeId=?', [req.params.id], function (err2, row) {
       if (err2) return res.status(500).json({ error: err2.message });
       res.json(row);
     });
@@ -132,137 +132,197 @@ app.put("/api/employees/:id", upload.single('resim'), (req, res) => { // Çalı�
 
 // DELETE: Sil
 app.delete("/api/employees/:id", (req, res) => { // Çalışan silen DELETE endpoint'i
-    db.run(`DELETE FROM employees WHERE EmployeeId=?`, [req.params.id], function (err) {
-        if (err) return res.status(500).json({ error: err.message }); // Hata varsa 500 döner
-        res.sendStatus(204); // Başarılıysa 204 No Content döner
-    });
+  db.run(`DELETE FROM employees WHERE EmployeeId=?`, [req.params.id], function (err) {
+    if (err) return res.status(500).json({ error: err.message }); // Hata varsa 500 döner
+    res.sendStatus(204); // Başarılıysa 204 No Content döner
+  });
+});
+
+// YENİ EKLENEN KOD: Toplu Silme
+app.delete("/api/employees", (req, res) => {
+  const idsToDelete = req.body.ids;
+
+  if (!idsToDelete || !Array.isArray(idsToDelete) || idsToDelete.length === 0) {
+    return res.status(400).json({ message: 'Silinecek ID listesi sağlanmadı.' });
+  }
+
+  const placeholders = idsToDelete.map(() => '?').join(',');
+  const sql = `DELETE FROM employees WHERE EmployeeId IN (${placeholders})`;
+
+  db.run(sql, idsToDelete, function (err) {
+    if (err) {
+      res.status(500).json({ error: err.message });
+      return;
+    }
+    res.json({ message: `${this.changes} adet kayıt başarıyla silindi.` });
+  });
 });
 
 // Arama: İsme göre filtrele
 app.get("/api/employees/search", (req, res) => {
-    const { q } = req.query;
-    db.all(
-        "SELECT * FROM employees WHERE Isim LIKE ?",
-        [`%${q}%`],
-        (err, rows) => {
-            if (err) return res.status(500).json({ error: err.message });
-            res.json(rows);
-        }
-    );
+  const { q } = req.query;
+  db.all(
+    "SELECT * FROM employees WHERE Isim LIKE ?",
+    [`%${q}%`],
+    (err, rows) => {
+      if (err) return res.status(500).json({ error: err.message });
+      res.json(rows);
+    }
+  );
 });
 
 // Ürünleri getir
 app.get('/api/urunler', (req, res) => {
-    let query = "SELECT * FROM urunler WHERE 1=1";
-    const params = [];
+  let query = "SELECT * FROM urunler WHERE 1=1";
+  const params = [];
 
-    if (req.query.urunAdi) {
-        query += " AND urunAdi LIKE ?";
-        params.push(`%${req.query.urunAdi}%`);
-    }
-    if (req.query.kategori) {
-        query += " AND kategori LIKE ?";
-        params.push(`%${req.query.kategori}%`);
-    }
+  if (req.query.urunAdi) {
+    query += " AND urunAdi LIKE ?";
+    params.push(`%${req.query.urunAdi}%`);
+  }
+  if (req.query.kategori) {
+    query += " AND kategori LIKE ?";
+    params.push(`%${req.query.kategori}%`);
+  }
 
-    db.all(query, params, (err, rows) => {
-        if (err) {
-            res.status(500).json({ error: err.message });
-            return;
-        }
-        res.json(rows);
-    });
+  db.all(query, params, (err, rows) => {
+    if (err) {
+      res.status(500).json({ error: err.message });
+      return;
+    }
+    res.json(rows);
+  });
 });
 
 // Ürün ekle
 app.post('/api/urunler', (req, res) => {
-    const { urunAdi, kategori, fiyat, stok, aciklama } = req.body;
-    db.run("INSERT INTO urunler (urunAdi, kategori, fiyat, stok, aciklama) VALUES (?, ?, ?, ?, ?)",
-        [urunAdi, kategori, fiyat, stok, aciklama],
-        function(err) {
-            if (err) return res.status(500).json({error: err.message});
-            res.json({ id: this.lastID, ...req.body });
-        });
+  const { urunAdi, kategori, fiyat, stok, aciklama } = req.body;
+  db.run("INSERT INTO urunler (urunAdi, kategori, fiyat, stok, aciklama) VALUES (?, ?, ?, ?, ?)",
+    [urunAdi, kategori, fiyat, stok, aciklama],
+    function (err) {
+      if (err) return res.status(500).json({ error: err.message });
+      res.json({ id: this.lastID, ...req.body });
+    });
 });
 
 // Ürün güncelle
 app.put('/api/urunler', (req, res) => {
-    const { id, urunAdi, kategori, fiyat, stok, aciklama } = req.body;
-    db.run("UPDATE urunler SET urunAdi=?, kategori=?, fiyat=?, stok=?, aciklama=? WHERE id=?",
-        [urunAdi, kategori, fiyat, stok, aciklama, id],
-        function(err) {
-            if (err) return res.status(500).json({error: err.message});
-            res.json(req.body);
-        });
+  const { id, urunAdi, kategori, fiyat, stok, aciklama } = req.body;
+  db.run("UPDATE urunler SET urunAdi=?, kategori=?, fiyat=?, stok=?, aciklama=? WHERE id=?",
+    [urunAdi, kategori, fiyat, stok, aciklama, id],
+    function (err) {
+      if (err) return res.status(500).json({ error: err.message });
+      res.json(req.body);
+    });
 });
 
 // Ürün sil
 app.delete('/api/urunler', (req, res) => {
-    const { id } = req.body;
-    db.run("DELETE FROM urunler WHERE id=?", [id], function(err) {
-        if (err) return res.status(500).json({error: err.message});
-        res.json({ success: true });
-    });
+  const { id } = req.body;
+  db.run("DELETE FROM urunler WHERE id=?", [id], function (err) {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json({ success: true });
+  });
+});
+
+// YENİ EKLENEN KOD: Toplu Ürün Silme
+app.delete('/api/urunler', (req, res) => {
+  const idsToDelete = req.body.ids;
+
+  if (!idsToDelete || !Array.isArray(idsToDelete) || idsToDelete.length === 0) {
+    return res.status(400).json({ message: 'Silinecek ID listesi sağlanmadı.' });
+  }
+
+  const placeholders = idsToDelete.map(() => '?').join(',');
+  const sql = `DELETE FROM urunler WHERE id IN (${placeholders})`;
+
+  db.run(sql, idsToDelete, function (err) {
+    if (err) {
+      res.status(500).json({ error: err.message });
+      return;
+    }
+    res.json({ message: `${this.changes} adet ürün başarıyla silindi.` });
+  });
 });
 
 // Abonelikler tablosu endpointleri
 app.get('/api/abonelikler', (req, res) => {
-    let query = "SELECT * FROM abonelikler WHERE 1=1";
-    const params = [];
+  let query = "SELECT * FROM abonelikler WHERE 1=1";
+  const params = [];
 
-    if (req.query.aboneAdi) {
-        query += " AND aboneAdi LIKE ?";
-        params.push(`%${req.query.aboneAdi}%`);
-    }
-    if (req.query.abonelikTuru) {
-        query += " AND abonelikTuru LIKE ?";
-        params.push(`%${req.query.abonelikTuru}%`);
-    }
-    if (req.query.eposta) {
-        query += " AND eposta LIKE ?";
-        params.push(`%${req.query.eposta}%`);
-    }
+  if (req.query.aboneAdi) {
+    query += " AND aboneAdi LIKE ?";
+    params.push(`%${req.query.aboneAdi}%`);
+  }
+  if (req.query.abonelikTuru) {
+    query += " AND abonelikTuru LIKE ?";
+    params.push(`%${req.query.abonelikTuru}%`);
+  }
+  if (req.query.eposta) {
+    query += " AND eposta LIKE ?";
+    params.push(`%${req.query.eposta}%`);
+  }
 
-    db.all(query, params, (err, rows) => {
-        if (err) {
-            res.status(500).json({ error: err.message });
-            return;
-        }
-        res.json(rows);
-    });
+  db.all(query, params, (err, rows) => {
+    if (err) {
+      res.status(500).json({ error: err.message });
+      return;
+    }
+    res.json(rows);
+  });
 });
 
 app.post('/api/abonelikler', (req, res) => {
-    const { aboneAdi, abonelikTuru, baslangicTarihi, bitisTarihi, eposta } = req.body;
-    db.run("INSERT INTO abonelikler (aboneAdi, abonelikTuru, baslangicTarihi, bitisTarihi, eposta) VALUES (?, ?, ?, ?, ?)",
-        [aboneAdi, abonelikTuru, baslangicTarihi, bitisTarihi, eposta],
-        function(err) {
-            if (err) return res.status(500).json({error: err.message});
-            res.json({ id: this.lastID, ...req.body });
-        });
+  const { aboneAdi, abonelikTuru, baslangicTarihi, bitisTarihi, eposta } = req.body;
+  db.run("INSERT INTO abonelikler (aboneAdi, abonelikTuru, baslangicTarihi, bitisTarihi, eposta) VALUES (?, ?, ?, ?, ?)",
+    [aboneAdi, abonelikTuru, baslangicTarihi, bitisTarihi, eposta],
+    function (err) {
+      if (err) return res.status(500).json({ error: err.message });
+      res.json({ id: this.lastID, ...req.body });
+    });
 });
 
 app.put('/api/abonelikler', (req, res) => {
-    const { id, aboneAdi, abonelikTuru, baslangicTarihi, bitisTarihi, eposta } = req.body;
-    db.run("UPDATE abonelikler SET aboneAdi=?, abonelikTuru=?, baslangicTarihi=?, bitisTarihi=?, eposta=? WHERE id=?",
-        [aboneAdi, abonelikTuru, baslangicTarihi, bitisTarihi, eposta, id],
-        function(err) {
-            if (err) return res.status(500).json({error: err.message});
-            res.json(req.body);
-        });
+  const { id, aboneAdi, abonelikTuru, baslangicTarihi, bitisTarihi, eposta } = req.body;
+  db.run("UPDATE abonelikler SET aboneAdi=?, abonelikTuru=?, baslangicTarihi=?, bitisTarihi=?, eposta=? WHERE id=?",
+    [aboneAdi, abonelikTuru, baslangicTarihi, bitisTarihi, eposta, id],
+    function (err) {
+      if (err) return res.status(500).json({ error: err.message });
+      res.json(req.body);
+    });
 });
 
 app.delete('/api/abonelikler', (req, res) => {
-    const { id } = req.body;
-    db.run("DELETE FROM abonelikler WHERE id=?", [id], function(err) {
-        if (err) return res.status(500).json({error: err.message});
-        res.json({ success: true });
-    });
+  const { id } = req.body;
+  db.run("DELETE FROM abonelikler WHERE id=?", [id], function (err) {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json({ success: true });
+  });
+});
+
+// YENİ EKLENEN KOD: Toplu Abonelik Silme
+app.delete('/api/abonelikler', (req, res) => {
+  const idsToDelete = req.body.ids;
+
+  if (!idsToDelete || !Array.isArray(idsToDelete) || idsToDelete.length === 0) {
+    return res.status(400).json({ message: 'Silinecek ID listesi sağlanmadı.' });
+  }
+
+  const placeholders = idsToDelete.map(() => '?').join(',');
+  const sql = `DELETE FROM abonelikler WHERE id IN (${placeholders})`;
+
+  db.run(sql, idsToDelete, function (err) {
+    if (err) {
+      res.status(500).json({ error: err.message });
+      return;
+    }
+    res.json({ message: `${this.changes} adet abonelik başarıyla silindi.` });
+  });
 });
 
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'anasayfa.html'));
+  res.sendFile(path.join(__dirname, 'anasayfa.html'));
 });
 
 app.listen(3000, () => console.log("API 3000 portunda veritabanıyla çalışıyor")); // Sunucuyu 3000 portunda başlatır

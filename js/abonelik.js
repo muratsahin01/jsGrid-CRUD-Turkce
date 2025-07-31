@@ -1,5 +1,13 @@
-$(function () {
-  $("#jsGrid").jsGrid({
+let seciliAbonelikler = new Set();
+
+$(function() {
+    const $topluSilBtn = $("#topluSilBtn");
+
+    function guncelleTopluSilButonu() {
+        $topluSilBtn.prop('disabled', seciliAbonelikler.size === 0);
+    }
+
+    $("#jsGrid").jsGrid({
     width: "100%",
     inserting: false, // Modal ile eklenecek
     editing: false, // In-line düzenleme kapatıldı
@@ -35,7 +43,30 @@ $(function () {
       }
     },
     fields: [
-      { name: "id", type: "number", visible: false },
+            {
+                headerTemplate: function() {
+                    return $("<input>").attr("type", "checkbox").on("change", function () {
+                        $(".single-checkbox").prop("checked", $(this).is(":checked")).trigger("change");
+                    });
+                },
+                itemTemplate: function(_, item) {
+                    return $("<input>").attr("type", "checkbox").addClass("single-checkbox")
+                        .prop("checked", seciliAbonelikler.has(item.id))
+                        .on("change", function () {
+                            if ($(this).is(":checked")) {
+                                seciliAbonelikler.add(item.id);
+                            } else {
+                                seciliAbonelikler.delete(item.id);
+                            }
+                            guncelleTopluSilButonu();
+                        });
+                },
+                align: "center",
+                width: 50,
+                sorting: false,
+                filtering: false
+            },
+            { name: "id", type: "number", visible: false },
       { name: "aboneAdi", type: "text", title: "Abone Adı", width: 100, validate: "required" },
       { name: "abonelikTuru", type: "text", title: "Abonelik Türü", width: 80 },
       { name: "baslangicTarihi", type: "text", title: "Başlangıç Tarihi", width: 80 },
@@ -54,7 +85,31 @@ $(function () {
         }
       }
     ]
-  });
+    });
+
+    $topluSilBtn.on("click", function() {
+        if (seciliAbonelikler.size === 0) return;
+
+        if (confirm(`${seciliAbonelikler.size} adet aboneliği silmek istediğinizden emin misiniz?`)) {
+            const idsToDelete = Array.from(seciliAbonelikler);
+
+            $.ajax({
+                type: "DELETE",
+                url: "http://localhost:3000/api/abonelikler",
+                contentType: "application/json",
+                data: JSON.stringify({ ids: idsToDelete }),
+                success: function(response) {
+                    alert(response.message || "Seçilen abonelikler başarıyla silindi.");
+                    seciliAbonelikler.clear();
+                    guncelleTopluSilButonu();
+                    $("#jsGrid").jsGrid("loadData");
+                },
+                error: function() {
+                    alert("Hata: Abonelikler silinemedi.");
+                }
+            });
+        }
+    });
 
   // Yeni Abone Ekle Butonu
   $("#yeniAboneBtn").on("click", function() {
