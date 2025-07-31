@@ -38,17 +38,39 @@
 
  .header-bar {
    display: flex;
-   justify-content: space-between;
+   justify-content: space-between; /* Bu satırı koruyoruz */
    align-items: center;
    background: #f5f5f5;
-   padding: 18px 32px 18px 32px;
-   border-bottom: 1px solid #f5f5f5;
-   margin: 0;
+   padding: 18px 32px;
+   border-bottom: 1px solid #e0e0e0;
    position: fixed;
    top: 0;
    left: 0;
    width: 100%;
+   box-sizing: border-box; /* Padding'in genişliğe dahil edilmesini sağlar */
    z-index: 10;
+ }
+
+ .header-bar .user-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Hoş geldin yazısı ile buton arasındaki boşluk */
+ }
+
+ #logout-button {
+    padding: 8px 15px;
+    border: none;
+    background-color: #d9534f;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+ }
+
+ #logout-button:hover {
+    background-color: #c9302c;
  }
 
  .site-footer {
