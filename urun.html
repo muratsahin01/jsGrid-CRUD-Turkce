@@ -16,6 +16,47 @@
     <h2>Ürün Listesi</h2>
     <div id="jsGrid"></div>
 
+    <div style="text-align: center; margin-top: 20px;">
+        <button id="yeniUrunBtn" class="btn btn-primary">Yeni Ürün Ekle</button>
+        <button onclick="window.location.href='index.html'" class="btn btn-secondary">Ana Sayfaya Dön</button>
+    </div>
+
+    <!-- Ekleme Modalı -->
+    <div id="ekleModal" class="modal">
+        <div class="modal-header">
+            <h3>Yeni Ürün Ekle</h3>
+            <span class="close-button" onclick="document.getElementById('ekleModal').style.display='none'; document.getElementById('modalOverlay').style.display='none';">&times;</span>
+        </div>
+        <div class="modal-body">
+            <form id="ekleForm">
+                <div class="form-group">
+                    <label for="ekle_urunAdi">Ürün Adı:</label>
+                    <input type="text" id="ekle_urunAdi" required>
+                </div>
+                <div class="form-group">
+                    <label for="ekle_kategori">Kategori:</label>
+                    <input type="text" id="ekle_kategori">
+                </div>
+                <div class="form-group">
+                    <label for="ekle_fiyat">Fiyat:</label>
+                    <input type="number" id="ekle_fiyat">
+                </div>
+                <div class="form-group">
+                    <label for="ekle_stok">Stok Miktarı:</label>
+                    <input type="number" id="ekle_stok">
+                </div>
+                <div class="form-group">
+                    <label for="ekle_aciklama">Açıklama:</label>
+                    <input type="text" id="ekle_aciklama">
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Ekle</button>
+                    <button type="button" class="btn btn-secondary" onclick="document.getElementById('ekleModal').style.display='none'; document.getElementById('modalOverlay').style.display='none';">Kapat</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- Modal (kart) -->
     <div id="modalOverlay" class="modal-overlay"></div>
     <div id="guncelleModal" class="modal">
@@ -58,12 +99,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jsgrid@1.5.3/dist/jsgrid.min.js"></script>
     <script src="js/urun.js"></script>
-    <div style="text-align: center; margin-top: 20px;">
-        <button onclick="window.location.href='index.html'"
-            style="  padding:10px 20px;  font-size:16px; border-radius:6px; background:#1976d2; color:#fff; border:none; cursor:pointer">
-            Ana Sayfaya Dön
-        </button>
-    </div>
+    
 
 </body>
 

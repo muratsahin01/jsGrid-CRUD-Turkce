@@ -488,9 +488,9 @@ body {
      /* Göze hoş gelen bir gölge ekler */
      z-index: 1000;
      /* Diğer tüm elemanların üzerinde görünür */
-     width: 90%;
-     /* Genişliği ekranın %90'ı yapar */
-     max-width: 700px;
+     width: 500px;
+     /* Sabit genişlik */
+     max-width: 90%;
      /* Maksimum genişliği 700px ile sınırlar */
      overflow: hidden;
      /* İçerik taşarsa gizler */

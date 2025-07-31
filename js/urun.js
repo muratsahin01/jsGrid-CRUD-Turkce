@@ -1,7 +1,7 @@
 $(function () {
   $("#jsGrid").jsGrid({
     width: "100%",
-    inserting: true,
+    inserting: false, // Modal ile eklenecek
     editing: false, // In-line düzenleme kapatıldı
     sorting: true,
     paging: true,
@@ -55,6 +55,39 @@ $(function () {
       }
     ]
   });
+
+  // Yeni Ürün Ekle Butonu
+  $("#yeniUrunBtn").on("click", function() {
+    $("#ekleModal").show();
+    $("#modalOverlay").show();
+  });
+
+  // Ekleme Formu
+  $("#ekleForm").on("submit", function(e) {
+    e.preventDefault();
+    var newItem = {
+        urunAdi: $("#ekle_urunAdi").val(),
+        kategori: $("#ekle_kategori").val(),
+        fiyat: $("#ekle_fiyat").val(),
+        stok: $("#ekle_stok").val(),
+        aciklama: $("#ekle_aciklama").val()
+    };
+
+    $.ajax({
+      type: "POST",
+      url: "/api/urunler",
+      data: newItem,
+      success: function () {
+        $("#ekleModal").hide();
+        $("#modalOverlay").hide();
+        $("#ekleForm")[0].reset();
+        $("#jsGrid").jsGrid("loadData");
+      },
+      error: function () {
+        alert('Ekleme hatası!');
+      }
+    });
+  });
 });
 
 function openUpdateModal(item) {
@@ -66,6 +99,7 @@ function openUpdateModal(item) {
   $("#guncelle_aciklama").val(item.aciklama);
 
   $("#guncelleModal").show();
+  $("#modalOverlay").show();
 
   $("#guncelleForm").off("submit").on("submit", function (e) {
     e.preventDefault();
@@ -85,6 +119,7 @@ function openUpdateModal(item) {
       contentType: "application/x-www-form-urlencoded",
       success: function () {
         $("#guncelleModal").hide();
+        $("#modalOverlay").hide();
         $("#jsGrid").jsGrid("loadData");
       },
       error: function () {

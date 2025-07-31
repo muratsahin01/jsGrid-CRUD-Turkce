@@ -2,7 +2,7 @@ $(function () { // Sayfa yüklendiğinde çalışır
   $("#jsGrid").jsGrid({ // jsGrid tabloyu başlatır
     width: "100%", // Tablo genişliği
     // height: "700px", // Tablo yüksekliği
-    inserting: true, // Yeni kayıt ekleme aktif
+    inserting: false, // Yeni kayıt ekleme modal ile yapılacak
     editing: false, // inline edit kapalı, modal ile olacak
     sorting: true, // Sıralama aktif
     paging: true, // Sayfalama aktsif
@@ -80,7 +80,7 @@ $(function () { // Sayfa yüklendiğinde çalışır
           var dosya = item.Resim || item.resim; // Resim dosya adını al
           console.log('Resim alanı:', dosya); // Resim alanını logla
           if (dosya && typeof dosya === 'string' && dosya !== 'null' && dosya !== 'undefined') {
-            return `<img src=\"http://localhost:3000/uploads/${dosya}\" width=\"50\" height=\"50\" style=\"border:2px solid red;\">`; // Resim önizleme
+            return `<img src="http://localhost:3000/uploads/${dosya}" width="50" height="50" style="border:2px solid red;">`; // Resim önizleme
           } else {
             return 'Yok'; // Resim yoksa
           }
@@ -114,6 +114,56 @@ $(function () { // Sayfa yüklendiğinde çalışır
       }
     ]
   });
+
+  // Yeni Çalışan Ekle Butonu
+  $("#yeniCalisanBtn").on("click", function() {
+    $("#ekleModal").show();
+    $("#modalOverlay").show();
+  });
+
+  // Resim önizleme (Ekleme)
+  $("#ekle_resim").on("change", function () {
+    if (this.files && this.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $("#ekle_resim_onizleme").attr('src', e.target.result).show();
+      };
+      reader.readAsDataURL(this.files[0]);
+    }
+  });
+
+  // Ekleme Formu
+  $("#ekleForm").on("submit", function(e) {
+    e.preventDefault();
+    var formData = new FormData();
+    formData.append('Isim', $("#ekle_isim").val());
+    formData.append('Pozisyon', $("#ekle_pozisyon").val());
+    formData.append('Ofis', $("#ekle_ofis").val());
+    formData.append('Yas', $("#ekle_yas").val());
+    formData.append('Maas', $("#ekle_maas").val());
+    var fileInput = document.getElementById('ekle_resim');
+    if (fileInput.files[0]) {
+      formData.append('resim', fileInput.files[0]);
+    }
+
+    $.ajax({
+      type: "POST",
+      url: "http://localhost:3000/api/employees",
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function () {
+        $("#ekleModal").hide();
+        $("#modalOverlay").hide();
+        $("#ekleForm")[0].reset();
+        $("#ekle_resim_onizleme").hide();
+        $("#jsGrid").jsGrid("loadData");
+      },
+      error: function () {
+        alert('Ekleme hatası!');
+      }
+    });
+  });
 });
 
 // Modal açma fonksiyonu
@@ -139,6 +189,7 @@ function openUpdateModal(item) { // Güncelleme modalını açar
     }
   });
   $("#guncelleModal").show(); // Modalı göster
+  $("#modalOverlay").show();
   $("#guncelleForm")[0].onsubmit = function (e) { // Form submit olunca çalışır
     e.preventDefault(); // Formun default submitini engelle
     var formData = new FormData(); // FormData nesnesi oluştur
@@ -160,6 +211,7 @@ function openUpdateModal(item) { // Güncelleme modalını açar
       contentType: false,
       success: function () {
         $("#guncelleModal").hide(); // Modalı kapat
+        $("#modalOverlay").hide();
         $("#jsGrid").jsGrid("loadData"); // Tabloyu yenile
       },
       error: function () { alert('Güncelleme hatası!'); }
