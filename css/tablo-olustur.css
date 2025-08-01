@@ -1,0 +1,179 @@
+/* Genel Sayfa Stilleri */
+body {
+      background-color: #f4f7f9; /* Yumuşak gri arka plan */
+    font-family: Arial, sans-serif;
+    color: #333;
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* Form Konteyneri (Kart) */
+.form-container {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+/* Başlık Alanı */
+.form-container header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+}
+.header-bar {
+    background-color: #ffffff;
+    padding: 15px 30px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form-container header h1 {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.home-btn {
+    background-color: #6c757d;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.home-btn:hover {
+    background-color: #5a6268;
+    transform: translateY(-2px);
+}
+#logout-button {
+   padding: 8px 15px;
+   border: none;
+   background-color: #d9534f;
+   color: white;
+   border-radius: 5px;
+   cursor: pointer;
+   font-size: 14px;
+   font-weight: 500;
+   transition: background-color 0.3s ease;
+ }
+
+/* Genel Girdi Alanları (input, select) */
+input[type="text"],
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Önemli: Padding ve border genişliğe dahil edilir */
+    font-size: 15px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input[type="text"]:focus,
+select:focus {
+    outline: none;
+    border-color: #1976d2;
+    box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.2);
+}
+
+/* Sütun Tanımlama Satırı */
+.column-definition {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.column-definition:last-child {
+    border-bottom: none;
+}
+
+/* Sütun adı ve tipi için esnek genişlik */
+.column-definition input[name="columnName"] {
+    flex: 2; /* İsim alanı daha geniş olsun */
+}
+
+.column-definition select[name="columnType"] {
+    flex: 1;
+}
+
+/* Butonlar */
+#add-column, .remove-column {
+    background-color: #f0f0f0;
+    color: #555;
+    border: 1px solid #ccc;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#add-column:hover, .remove-column:hover {
+    background-color: #e0e0e0;
+    border-color: #bbb;
+}
+
+.remove-column {
+    background-color: #fbebeb;
+    color: #c0392b;
+    border-color: #e74c3c;
+}
+
+.remove-column:hover {
+    background-color: #e74c3c;
+    color: white;
+}
+
+/* Ana Eylem Butonu */
+button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin-top: 20px;
+    background-color: #1976d2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: #135a9e;
+}
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+    cursor: pointer;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+    transform: translateY(-2px);
+}
+
+/* Form elemanları arası boşluk */
+form > div {
+    margin-bottom: 20px;
+}
+.header-bar .user-actions {
+   display: flex;
+   align-items: center;
+   gap: 15px;
+   /* Hoş geldin yazısı ile buton arasındaki boşluk */
+ }
