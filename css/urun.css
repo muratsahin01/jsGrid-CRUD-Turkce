@@ -467,3 +467,15 @@ button {
 .btn-secondary:hover {
     background-color: #5a6268;
 }
+.btn-third {
+     background-color: #516577;
+    /* İkincil butonun arka plan rengi (gri) */
+    color: white;
+    /* Yazı rengi */
+
+}
+
+.btn-third:hover {
+    background-color: #3b4a5c;
+    /* Üzerine gelince rengi koyulaştırır */
+}

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oluşturulan Tablolar</title>
+    <link rel="stylesheet" href="css/dinamiktablolar.css">
+
+
+
+</head>
+
+<body>
+
+    <div class="header-bar">
+        <span style="font-size: 24px; font-weight: bold; color: #1976d2;">JsGrid Denemesi</span>
+        <div class="user-actions">
+            <span id="user-info" style="font-size: 15px;"></span>
+            <button id="logout-button" onclick="logout()">Çıkış Yap</button>
+        </div>
+    </div>
+    <div class="container">
+
+        <header>
+            <h1>Oluşturduğunuz Tablolar</h1>
+            
+            <nav style="text-align: center; margin-top: 10px;">
+                <button onclick="window.location.href='index.html'" class="btn btn-secondary">Anasayfa</button>
+                <button onclick="window.location.href='tablo-olustur.html'" class="btn btn-primary">Yeni Tablo
+                    Oluştur</button>
+            </nav>
+        </header>
+        <main>
+            <div id="table-list">
+                <!-- Tablolar buraya dinamik olarak yüklenecek -->
+            </div>
+        </main>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', async () => {
+                const tableListContainer = document.getElementById('table-list');
+
+                try {
+                    const response = await fetch('/api/tables');
+                    if (!response.ok) {
+                        throw new Error('Tablolar yüklenemedi.');
+                    }
+                    const tableNames = await response.json();
+
+                    if (tableNames.length === 0) {
+                        tableListContainer.innerHTML = '<p style= text-align=center;> Henüz bir tablo oluşturmamışsınız!.</p>';
+                        return;
+                    }
+
+                    tableNames.forEach(tableName => {
+                        const card = document.createElement('div');
+                        card.className = 'table-card';
+                        card.dataset.tableName = tableName; // Silme işlemi için tablo adını sakla
+
+                        const cardContent = document.createElement('div');
+                        cardContent.className = 'card-content';
+                        cardContent.innerHTML = `
+                        <img src="https://cdn-icons-png.flaticon.com/512/3209/3209265.png" alt="Tablo">
+                        <span>${tableName}</span>
+                    `;
+                        // Kart içeriğine tıklanınca grid sayfasına git
+                        cardContent.addEventListener('click', () => {
+                            window.location.href = `generic-grid.html?table=${tableName}`;
+                        });
+
+                        card.appendChild(cardContent);
+
+                        const cardActions = document.createElement('div');
+                        cardActions.className = 'card-actions';
+                        cardActions.innerHTML = `
+                        <button class="card-btn update">Güncelle</button>
+                        <button class="card-btn delete">Sil</button>
+                    `;
+
+                        card.appendChild(cardActions);
+                        tableListContainer.appendChild(card);
+                    });
+
+                    // Sil ve Güncelle butonları için olay dinleyicileri
+                    tableListContainer.addEventListener('click', async (e) => {
+                        const target = e.target;
+                        const card = target.closest('.table-card');
+                        if (!card) return;
+
+                        const tableName = card.dataset.tableName;
+
+                        if (target.classList.contains('delete')) {
+                            if (confirm(`'${tableName}' tablosunu ve içindeki tüm verileri kalıcı olarak silmek istediğinizden emin misiniz? Bu işlem geri alınamaz!`)) {
+                                try {
+                                    const response = await fetch(`/api/tables/delete/${tableName}`, {
+                                        method: 'DELETE'
+                                    });
+                                    const result = await response.json();
+                                    if (response.ok && result.success) {
+                                        alert(result.message);
+                                        card.remove(); // Kartı arayüzden kaldır
+                                    } else {
+                                        throw new Error(result.message || 'Tablo silinemedi.');
+                                    }
+                                } catch (error) {
+                                    alert(`Hata: ${error.message}`);
+                                }
+                            }
+                        } else if (target.classList.contains('update')) {
+                            alert('İlerleyen zamanlarda eklenecektir.');
+                        }
+                    });
+
+                } catch (error) {
+                    tableListContainer.innerHTML = `<p style="color: red;">Hata: ${error.message}</p>`;
+                }
+            });
+        </script>
+
+        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+        <script src="js/auth.js"></script>
+        <script src="js/auth-check.js"></script>
+        <script src="js/logout.js"></script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', async () => {
+                const { data: { user } } = await supabaseClient.auth.getUser();
+                if (user) {
+                    const userInfo = document.getElementById('user-info');
+                    // Supabase'de kullanıcı kaydında `full_name` olarak eklediğimiz meta veriyi çekiyoruz.
+                    const userName = user.user_metadata.full_name || user.email;
+                    userInfo.textContent = `Hoş Geldin, ${userName}`;
+                }
+            });
+        </script>
+</body>
+
+</html>

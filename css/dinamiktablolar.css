@@ -1,0 +1,239 @@
+/* Genel Sayfa Stilleri */
+body {
+    background-color: #f4f7f9; /* Yumuşak gri arka plan */
+    font-family: Arial, sans-serif;
+    color: #333;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+/* Üst Bilgi (Header) */
+.header-bar {
+    background-color: #ffffff;
+    padding: 15px 30px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Sayfa Başlığı (h1) ve Navigasyon */
+header {
+    text-align: center;
+    padding: 30px 0;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: 2.5em;
+    font-weight: 600;
+    color: #2c3e50;
+    margin: 0 0 10px 0;
+}
+
+header nav {
+    margin-top: 15px;
+}
+
+/* Buton Stilleri */
+.btn {
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+    margin: 0 5px;
+}
+
+.btn-primary {
+    background-color: #1976d2;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #135a9e;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+    transform: translateY(-2px);
+}
+
+/* Tablo Kartları Listesi */
+#table-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 25px;
+    padding: 20px 0;
+}
+
+/* Tablo Kartı */
+.table-card {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 25px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 150px;
+}
+
+.table-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    border-color: #1976d2;
+    display: flex; /* Flexbox olarak ayarla */
+    flex-direction: column; /* Dikey hizala */
+    justify-content: space-between; /* İçerik ve butonları ayır */
+}
+
+/* Kartın ana içeriği (ikon ve metin) */
+.card-content {
+    flex-grow: 1; /* Mevcut alanı doldur */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* İçeriği dikey ve yatayda ortala */
+    padding: 10px; /* Butonlar için boşluk bırak */
+}
+
+.table-card img {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 15px;
+    opacity: 0.8;
+}
+
+.table-card span {
+    font-weight: 500;
+    font-size: 1.1em;
+    color: #34495e;
+    margin-bottom: 15px; /* Butonlar için yer aç */
+}
+
+/* Kart Eylem Butonları */
+.card-actions {
+    position: absolute;
+    bottom: 15px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.card-btn {
+    background: none;
+    border: 1px solid #ccc;
+    padding: 5px 12px;
+    border-radius: 5px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.card-btn.update {
+    color: #2980b9;
+    border-color: #a9cce3;
+}
+
+.card-btn.update:hover {
+    background-color: #2980b9;
+    color: white;
+}
+
+.card-btn.delete {
+    color: #c0392b;
+    border-color: #f5b7b1;
+}
+
+.card-btn.delete:hover {
+    background-color: #c0392b;
+    color: white;
+}
+
+/* Henüz Tablo Yok Mesajı */
+.no-tables-placeholder {
+    grid-column: 1 / -1; /* Tüm sütunları kapla */
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #ffffff;
+    border: 2px dashed #d0dbe5;
+    border-radius: 8px;
+}
+
+.no-tables-placeholder img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 20px;
+    opacity: 0.6;
+}
+
+.no-tables-placeholder h2 {
+    font-size: 22px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.no-tables-placeholder p {
+    color: #777;
+    margin-bottom: 25px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.no-tables-placeholder button {
+    background-color: #1976d2;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.no-tables-placeholder button:hover {
+    background-color: #135a9e;
+}
+#logout-button {
+   padding: 8px 15px;
+   border: none;
+   background-color: #d9534f;
+   color: white;
+   border-radius: 5px;
+   cursor: pointer;
+   font-size: 14px;
+   font-weight: 500;
+   transition: background-color 0.3s ease;
+ }
+ .header-bar .user-actions {
+   display: flex;
+   align-items: center;
+   gap: 15px;
+   /* Hoş geldin yazısı ile buton arasındaki boşluk */
+ }

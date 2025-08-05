@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yeni Tablo Oluştur</title>
+    <link rel="stylesheet" href="css/tablo-olustur.css">
+</head>
+
+<body>
+
+    <div class="header-bar">
+        <span style="font-size: 24px; font-weight: bold; color: #1976d2;">JsGrid Denemesi</span>
+        <div class="user-actions">
+            <span id="user-info" style="font-size: 15px;"></span>
+            <button id="logout-button" onclick="logout()">Çıkış Yap</button>
+        </div>
+    </div>
+    <div class="container">
+        <!DOCTYPE html>
+        <html lang="tr">
+
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Yeni Tablo Oluştur</title>
+            <link rel="stylesheet" href="css/tablo-olustur.css">
+        </head>
+
+        <body>
+            <div class="form-container">
+                <header>
+                    <h1>Yeni Tablo Oluştur</h1>
+                    <a href="index.html" class="home-btn">Anasayfa</a>
+                </header>
+                <main>
+                    <form id="create-table-form">
+                        <div>
+                            <label for="table-name">Tablo Adı:</label>
+                            <input type="text" id="table-name" name="tableName" required
+                                placeholder="Örn: musteriler, projeler, gorevler...">
+                        </div>
+
+                        <h3>Sütunlar</h3>
+                        <div id="columns-container">
+                            <!-- Sütunlar buraya dinamik olarak eklenecek -->
+                            <div class="column-definition">
+                                <input type="text" name="columnName" required placeholder="Sütun Adı">
+                                <select name="columnType">
+                                    <option value="TEXT">Metin</option>
+                                    <option value="INTEGER">Tam Sayı</option>
+                                    <option value="REAL">Ondalıklı Sayı</option>
+                                    <option value="DATE">Tarih</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="button" id="add-column">+ Sütun Ekle</button>
+                        <p style="text-align: right;">Oluşturduğunuz tabloları görüntülemek için <a href="dinamik-tablolar.html">buraya tıklayın</a>.</p>
+                        <hr style="margin: 25px 0; border: none; border-top: 1px solid #f0f0f0;">
+                        <button type="submit">Tabloyu Oluştur</button>
+                    </form>
+                    <p id="response-message"></p>
+                </main>
+            </div>
+            <script src="js/tablo-olustur.js"></script>
+        </body>
+
+        </html>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', async () => {
+                const { data: { user } } = await supabaseClient.auth.getUser();
+                if (user) {
+                    const userInfo = document.getElementById('user-info');
+                    // Supabase'de kullanıcı kaydında `full_name` olarak eklediğimiz meta veriyi çekiyoruz.
+                    const userName = user.user_metadata.full_name || user.email;
+                    userInfo.textContent = `Hoş Geldin, ${userName}`;
+                }
+            });
+        </script>
+
+        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+        <script src="js/auth.js"></script>
+        <script src="js/auth-check.js"></script>
+</body>
+
+</html>
